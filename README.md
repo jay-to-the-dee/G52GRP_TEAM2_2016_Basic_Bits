@@ -7,6 +7,7 @@ Basic Bits
 * Enhao Sun
 * Hafiz Hilmy
 * Tim Preston
+
 ## The App
 ### What it does
 The app is a directory for students and staff at the University of Nottingham
