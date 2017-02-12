@@ -5,8 +5,8 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.jonathandilks.baegley.g52grp_team2_2016_basic_bits"
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion 21 //Android 5.0
+        targetSdkVersion 25 //Android 7.1
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
