@@ -5,14 +5,58 @@
 		xmlns:information="http://www.basicbits.com/user-information#"
 		xmlns:v="http://www.w3.org/2001/vcard-rdf/3.0#">
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/EnhaoSun/">
-			<v:FN>Enhao Sun</v:FN>
+		<rdf:Description rdf:about="http://www.basicbits.com/user#student/HermioneGranger/">
+			<v:FN>Hermione Granger</v:FN>
 			<v:N rdf:parseType="Resource">
-				<v:Family>Sun</v:Family>
-				<v:Given>Enhao</v:Given>
+				<v:Family>Granger</v:Family>
+				<v:Given>Hermione</v:Given>
 			</v:N>
-			<v:email>psyes4@nottingham.ac.uk</v:email>
-			<information:id>4276716</information:id>
+			<v:email>jkrhg@nottingham.ac.uk</v:email>
+			<information:id>5210989</information:id>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#student/HarryPotter/">
+			<v:FN>Harry Potter</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Potter</v:Family>
+				<v:Given>Harry</v:Given>
+			</v:N>
+			<v:email>jkrhp@nottingham.ac.uk</v:email>
+			<information:id>5209392</information:id>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#student/RonaldWeasley/">
+			<v:FN>Ronald Weasley</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Weasley</v:Family>
+				<v:Given>Ronald</v:Given>
+			</v:N>
+			<v:email>jkrrw@nottingham.ac.uk</v:email>
+			<information:id>5215639</information:id>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#student/LunaLovegood/">
+			<v:FN>Luna Lovegood</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Lovegood</v:Family>
+				<v:Given>Luna</v:Given>
+			</v:N>
+			<v:email>jkrll@nottingham.ac.uk</v:email>
+			<information:id>5233011</information:id>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#student/DracoMalfoy/">
+			<v:FN>Draco Malfoy</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Malfoy</v:Family>
+				<v:Given>Draco</v:Given>
+			</v:N>
+			<v:email>jkrdm@nottingham.ac.uk</v:email>
+			<information:id>5290210</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
 	</rdf:RDF>
