@@ -3,7 +3,7 @@ Basic Bits
 ## Contributors
 * Vappu Koskela
 * Jonathan Dilks
-* Rebecca Tickls
+* Rebecca Tickle
 * Enhao Sun
 * Hafiz Hilmy
 * Tim Preston
