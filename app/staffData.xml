@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:information="http://www.basicbits.com/user-information#"
+		xmlns:v="http://www.w3.org/2001/vcard-rdf/3.0#">
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#staff/LordVoldemort/">
+			<v:FN>Lord Voldemort</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Riddle</v:Family>
+				<v:Given>Tom</v:Given>
+			</v:N>
+			<v:email>jkrlv@nottingham.ac.uk</v:email>
+			<v:tel>03941 451700</v:tel>
+			<information:office>C55</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#staff/AlbusDumbledore/">
+			<v:FN>Albus Dumbledore</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Dumbledore</v:Family>
+				<v:Given>Albus</v:Given>
+			</v:N>
+			<v:email>jkrad@nottingham.ac.uk</v:email>
+			<v:tel>03941 111481</v:tel>
+			<information:office>C32</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#staff/RubeusHagrid/">
+			<v:FN>Rubeus Hagrid</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Hagrid</v:Family>
+				<v:Given>Rubeus</v:Given>
+			</v:N>
+			<v:email>jkrrh@nottingham.ac.uk</v:email>
+			<v:tel>03941 116166</v:tel>
+			<information:office>A10</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#staff/GilderoyLockhart/">
+			<v:FN>Gilderoy Lockhart</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Lockhart</v:Family>
+				<v:Given>Gilderoy</v:Given>
+			</v:N>
+			<v:email>jkrgl@nottingham.ac.uk</v:email>
+			<v:tel>03941 926164</v:tel>
+			<information:office>A09</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.com/user#staff/RemusLupin/">
+			<v:FN>Remus Lupin</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Lupin</v:Family>
+				<v:Given>Remus</v:Given>
+			</v:N>
+			<v:email>jkrrl@nottingham.ac.uk</v:email>
+			<v:tel>03941 100360</v:tel>
+			<information:office>C83</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+		
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/MinervaMcgonagall/">
+			<v:FN>Minerva Mcgonagall</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Mcgonagall</v:Family>
+				<v:Given>Minerva</v:Given>
+			</v:N>
+			<v:email>jkrmm@nottingham.ac.uk</v:email>
+			<v:tel>03941 941035</v:tel>
+			<information:office>C14</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/SeverusSnape/">
+			<v:FN>Severus Snape</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Snape</v:Family>
+				<v:Given>Severus</v:Given>
+			</v:N>
+			<v:email>jkrss@nottingham.ac.uk</v:email>
+			<v:tel>03941 090160</v:tel>
+			<information:office>C4</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/DoloresUmbridge/">
+			<v:FN>Dolores Umbridge</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Umbridge</v:Family>
+				<v:Given>Dolores</v:Given>
+			</v:N>
+			<v:email>jkrdu@nottingham.ac.uk</v:email>
+			<v:tel>03941 082608</v:tel>
+			<information:office>B74</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/SybillTrelawney/">
+			<v:FN>Sybill Trelawney</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Trelawney</v:Family>
+				<v:Given>Sybill</v:Given>
+			</v:N>
+			<v:email>jkrst@nottingham.ac.uk</v:email>
+			<v:tel>03941 990362</v:tel>
+			<information:office>C71</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/SiriusBlack/">
+			<v:FN>Sirius Black</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Black</v:Family>
+				<v:Given>Sirius</v:Given>
+			</v:N>
+			<v:email>jkrsb@nottingham.ac.uk</v:email>
+			<v:tel>03941 031159</v:tel>
+			<information:office>C76</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/ArgusFilch/">
+			<v:FN>Argus Filch</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Filch</v:Family>
+				<v:Given>Argus</v:Given>
+			</v:N>
+			<v:email>jkraf@nottingham.ac.uk</v:email>
+			<v:tel>03941 567319</v:tel>
+			<information:office>C78</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/NearlyHeadlessNick/">
+			<v:FN>Nearly Headless Nick</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>de Mimsy-Porpington</v:Family>
+				<v:Given>Nicholas</v:Given>
+			</v:N>
+			<v:email>jkrnhn@nottingham.ac.uk</v:email>
+			<v:tel>03941 311092</v:tel>
+			<information:office>C72</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/QuirinusQuirrell/">
+			<v:FN>Quirinus Quirrell</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Quirrell</v:Family>
+				<v:Given>Quirinus</v:Given>
+			</v:N>
+			<v:email>jkrqq@nottingham.ac.uk</v:email>
+			<v:tel>03941 092609</v:tel>
+			<information:office>C82</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/HoraceSlughorn/">
+			<v:FN>Horace Slughorn</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Slughorn</v:Family>
+				<v:Given>Horace</v:Given>
+			</v:N>
+			<v:email>jkrhs@nottingham.ac.uk</v:email>
+			<v:tel>03941 102804</v:tel>
+			<information:office>C30</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/PoppyPomfrey/">
+			<v:FN>Poppy Pomfrey</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Pomfrey</v:Family>
+				<v:Given>Poppy</v:Given>
+			</v:N>
+			<v:email>jkrpp@nottingham.ac.uk</v:email>
+			<v:tel>03941 548119</v:tel>
+			<information:office>A40</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/AlastorMoody/">
+			<v:FN>Alastor Moody</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Moody</v:Family>
+				<v:Given>Alastor</v:Given>
+			</v:N>
+			<v:email>jkram@nottingham.ac.uk</v:email>
+			<v:tel>03941 612797</v:tel>
+			<information:office>A31</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/PomonaSprout/">
+			<v:FN>Pomona Sprout</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Sprout</v:Family>
+				<v:Given>Pomona</v:Given>
+			</v:N>
+			<v:email>jkrps@nottingham.ac.uk</v:email>
+			<v:tel>03941 150514</v:tel>
+			<information:office>A31</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
+
+	<rdf:Description rdf:about="http://www.basicbits.com/user#staff/FiliusFlitwick/">
+			<v:FN>Filius Flitwick</v:FN>
+			<v:N rdf:parseType="Resource">
+				<v:Family>Flitwick</v:Family>
+				<v:Given>Filius</v:Given>
+			</v:N>
+			<v:email>jkrff@nottingham.ac.uk</v:email>
+			<v:tel>03941 171097</v:tel>
+			<information:office>B80</information:office>
+			<information:department>Computer Science</information:department>
+		</rdf:Description>
+	</rdf:RDF>
