@@ -2,10 +2,10 @@
 
 	<rdf:RDF
 		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-		xmlns:information="http://www.basicbits.com/user-information#"
+		xmlns:information="http://www.basicbits.info/user-information#"
 		xmlns:v="http://www.w3.org/2001/vcard-rdf/3.0#">
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/HermioneGranger/">
+		<rdf:Description rdf:about="http://www.basicbits.info/user#student/HermioneGranger/">
 			<v:FN>Hermione Granger</v:FN>
 			<v:N rdf:parseType="Resource">
 				<v:Family>Granger</v:Family>
@@ -16,7 +16,7 @@
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/HarryPotter/">
+		<rdf:Description rdf:about="http://www.basicbits.info/user#student/HarryPotter/">
 			<v:FN>Harry Potter</v:FN>
 			<v:N rdf:parseType="Resource">
 				<v:Family>Potter</v:Family>
@@ -27,7 +27,7 @@
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/RonaldWeasley/">
+		<rdf:Description rdf:about="http://www.basicbits.info/user#student/RonaldWeasley/">
 			<v:FN>Ronald Weasley</v:FN>
 			<v:N rdf:parseType="Resource">
 				<v:Family>Weasley</v:Family>
@@ -38,7 +38,7 @@
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/LunaLovegood/">
+		<rdf:Description rdf:about="http://www.basicbits.info/user#student/LunaLovegood/">
 			<v:FN>Luna Lovegood</v:FN>
 			<v:N rdf:parseType="Resource">
 				<v:Family>Lovegood</v:Family>
@@ -49,7 +49,7 @@
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
 
-		<rdf:Description rdf:about="http://www.basicbits.com/user#student/DracoMalfoy/">
+		<rdf:Description rdf:about="http://www.basicbits.info/user#student/DracoMalfoy/">
 			<v:FN>Draco Malfoy</v:FN>
 			<v:N rdf:parseType="Resource">
 				<v:Family>Malfoy</v:Family>
