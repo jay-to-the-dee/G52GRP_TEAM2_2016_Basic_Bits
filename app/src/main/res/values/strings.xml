@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Baegley</string>
+    <string name="app_name" translatable="false"></string>
     <string name="git_name">G52GRP_TEAM2_2016_Basic_Bits</string>
     <string name="hello_there_label">Hello there,</string>
 </resources>
