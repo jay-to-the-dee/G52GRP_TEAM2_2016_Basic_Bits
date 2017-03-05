@@ -2,4 +2,14 @@
 <resources>
     <string name="git_name">G52GRP_MANNSCHAFT2_2016_Einfach_Bits</string>
     <string name="hello_there_label">Hallöchen,</string>
+    <string name="prompt_password">Passwort (freiwellig)</string>
+    <string name="title_activity_login">Einloggen</string>
+    <string name="error_invalid_password">Dieses Passwort ist zu klein</string>
+    <string name="error_invalid_email">Diese E-Mail-Adresse ist falsch</string>
+    <string name="error_incorrect_password">Diese Passwort ist falsch</string>
+    <string name="error_field_required">Dieses Feld wird benötigt</string>
+    <string name="action_sign_in">Einloggen oder Registrieren</string>
+    <string name="action_sign_in_short">Einloggen</string>
+    <string name="permission_rationale">\"Für die Bereitstellung von E-Mail-Ergänzungen sind Kontaktberechtigungen erforderlich.\"</string>
+    <string name="prompt_email">E-Mail</string>
 </resources>
