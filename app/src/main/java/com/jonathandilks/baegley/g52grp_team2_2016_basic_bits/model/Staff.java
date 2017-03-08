@@ -2,12 +2,14 @@ package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class Staff extends Person {
     private String phoneNo;
     private String office;
     private String webPageURL;
-    private Set<Student> tutees;
+    private SortedSet<Student> tutees;
     private Set<Module> modulesTaught;
 
     public Staff(String name, String email, String userName, String phoneNo, String office, String webPageURL) {
@@ -15,7 +17,7 @@ public class Staff extends Person {
         this.phoneNo = phoneNo;
         this.office = office;
         this.webPageURL = webPageURL;
-        tutees = new HashSet<>();
+        tutees = new ConcurrentSkipListSet<>(new PersonComparator());
         modulesTaught = new HashSet<>();
     }
 
