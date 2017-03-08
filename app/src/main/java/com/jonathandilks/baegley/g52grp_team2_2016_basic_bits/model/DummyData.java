@@ -25,15 +25,15 @@ public class DummyData {
         /* Create Students */
         students = new ConcurrentSkipListSet<>(new PersonComparator());
         /* Dumbledore's enrolled*/
-        Student harry = new Student("Harry Potter", "harry@aol.com", "potterrr", dumbledore);
-        Student ron = new Student("Ron Weesley", "ron@yahoo.com", "potterrr", dumbledore);
+        Student harry = new Student("Harry Potter", "harry@aol.com", "psypotter", dumbledore);
+        Student ron = new Student("Ron Weasley", "ron@yahoo.com", "psyweasley", dumbledore);
 
-        /* Hermione's enrolled*/
-        Student hermione = new Student("Hermione Granger", "hermione@hotmail.com", "potterrr", hagrid);
+        /* Hagrid's enrolled*/
+        Student hermione = new Student("Hermione Granger", "hermione@hotmail.com", "psygranger", hagrid);
 
         /* Umbridge's enrolled*/
-        Student malfoy = new Student("Draco Malfoy", "draco@malfoyresidence.com", "draco", umbridge);
-        Student volderz = new Student("Tom Riddle", "tom@voldermort.com", "", umbridge);
+        Student malfoy = new Student("Draco Malfoy", "draco@malfoyresidence.com", "psymalfoyd", umbridge);
+        Student volderz = new Student("Tom Riddle", "tom@HeWhoMustNotBeNamed.com", "", umbridge);
 
         students.add(harry);
         students.add(ron);
