@@ -31,6 +31,14 @@ public class Staff extends Person {
         return webPageURL;
     }
 
+    public Set<Student> getTutees() {
+        return tutees;
+    }
+
+    public Set<Module> getModulesTaught() {
+        return modulesTaught;
+    }
+
     protected void addStudent(Student student) {
         tutees.add(student);
     }

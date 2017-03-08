@@ -19,6 +19,10 @@ public class Student extends Person {
         return tutor;
     }
 
+    public Set<Module> getModulesEnrolled() {
+        return modulesEnrolled;
+    }
+
     protected void addModuleEnrolment(Module module) {
         modulesEnrolled.add(module);
     }

@@ -19,6 +19,14 @@ public class Module {
         lecturers.add(lecturer);
     }
 
+    @Override
+    public String toString() {
+        return "Module{" +
+                "moduleCode='" + moduleCode + '\'' +
+                ", moduleName='" + moduleName + '\'' +
+                '}';
+    }
+
     public Set<Student> getEnrolled() {
         return enrolled;
     }
