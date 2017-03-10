@@ -1,7 +1,5 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -10,15 +8,15 @@ public class Staff extends Person {
     private String office;
     private String webPageURL;
     private SortedSet<Student> tutees;
-    private Set<Module> modulesTaught;
+    private SortedSet<Module> modulesTaught;
 
     public Staff(String name, String email, String userName, String phoneNo, String office, String webPageURL) {
         super(name, email, userName);
         this.phoneNo = phoneNo;
         this.office = office;
         this.webPageURL = webPageURL;
-        tutees = new ConcurrentSkipListSet<>(new PersonComparator());
-        modulesTaught = new HashSet<>();
+        tutees = new ConcurrentSkipListSet<>();
+        modulesTaught = new ConcurrentSkipListSet<>();
     }
 
     public String getPhoneNo() {
@@ -33,11 +31,11 @@ public class Staff extends Person {
         return webPageURL;
     }
 
-    public Set<Student> getTutees() {
+    public SortedSet<Student> getTutees() {
         return tutees;
     }
 
-    public Set<Module> getModulesTaught() {
+    public SortedSet<Module> getModulesTaught() {
         return modulesTaught;
     }
 

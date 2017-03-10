@@ -1,6 +1,5 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
-import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -10,10 +9,11 @@ import java.util.concurrent.ConcurrentSkipListSet;
 public class DummyData {
     private SortedSet<Staff> staff;
     private SortedSet<Student> students;
+    private SortedSet<Module> modules;
 
     public DummyData() {
         /* Create Staff */
-        staff = new ConcurrentSkipListSet<>(new PersonComparator());
+        staff = new ConcurrentSkipListSet<>();
         Staff hagrid = new Staff("Hagrid", "hagrid@hogwarts.com", "psyhag", "0800001066", "Hut Thing", "http://ilikebeardsandowls.com");
         Staff umbridge = new Staff("Umbridge", "umbridge@hogwarts.com", "psyumb", "0800001067", "Evil Lair", "http://iamveryevilandmean.com");
         Staff dumbledore = new Staff("Dumbledore", "dumbledore@hogwarts.com", "psydum", "0800001068", "The Best Office in the School", "http://wizardprof.com");
@@ -23,7 +23,7 @@ public class DummyData {
         staff.add(dumbledore);
 
         /* Create Students */
-        students = new ConcurrentSkipListSet<>(new PersonComparator());
+        students = new ConcurrentSkipListSet<>();
         /* Dumbledore's enrolled*/
         Student harry = new Student("Harry Potter", "harry@aol.com", "psypotter", dumbledore);
         Student ron = new Student("Ron Weasley", "ron@yahoo.com", "psyweasley", dumbledore);
@@ -42,9 +42,12 @@ public class DummyData {
         students.add(volderz);
 
         /* Make modules*/
-        Module g51wiz = new Module("G51WIZ", "Intoduction to Wizardry", dumbledore);
-        Module g51fun = new Module("G51FUN", "Functional Magical Paradigms", hagrid);
-        Module g51bad = new Module("G51BAD", "Paradigms of Evil", umbridge);
+        modules = new ConcurrentSkipListSet<>();
+        Module g51fun = new Module("G51FUN", "Functional Magical Paradigms", ModuleSemester.SPRING, hagrid);
+        Module g51wiz = new Module("G51WIZ", "Intoduction to Wizardry", ModuleSemester.AUTUMN, dumbledore);
+        Module g52grp = new Module("G52GRP", "Ghastly Ridiculous Project", ModuleSemester.WHOLE_YEAR, umbridge);
+        Module g51bad = new Module("G51BAD", "Paradigms of Evil", ModuleSemester.SPRING, umbridge);
+
 
         /*Now give modules students */
         g51wiz.addStudent(harry);
@@ -58,6 +61,11 @@ public class DummyData {
         g51bad.addStudent(malfoy);
         g51bad.addStudent(volderz);
         g51bad.addStudent(harry);
+
+        modules.add(g51wiz);
+        modules.add(g52grp);
+        modules.add(g51fun);
+        modules.add(g51bad);
     }
 
     public SortedSet<Staff> getStaff() {
@@ -69,9 +77,13 @@ public class DummyData {
     }
 
     public SortedSet<Person> getEveryone() {
-        SortedSet<Person> everyone = new ConcurrentSkipListSet<>(new PersonComparator());
+        SortedSet<Person> everyone = new ConcurrentSkipListSet<>();
         everyone.addAll(staff);
         everyone.addAll(students);
         return everyone;
+    }
+
+    public SortedSet<Module> getModules() {
+        return modules;
     }
 }

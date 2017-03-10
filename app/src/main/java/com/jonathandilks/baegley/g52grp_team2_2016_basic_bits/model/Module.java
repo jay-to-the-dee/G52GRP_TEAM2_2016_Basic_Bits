@@ -1,21 +1,38 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import android.support.annotation.NonNull;
 
-public class Module {
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
+
+enum ModuleSemester {
+    WHOLE_YEAR(1), AUTUMN(2), SPRING(3);
+    private int order;
+
+    ModuleSemester(int order) {
+        this.order = order;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+};
+
+public class Module implements Comparable<Module> {
     private String moduleCode;
     private String moduleName;
+    private ModuleSemester moduleSemester;
 
-    private Set<Student> enrolled;
-    private Set<Staff> lecturers;
+    private SortedSet<Student> enrolled;
+    private SortedSet<Staff> lecturers;
 
-    public Module(String moduleCode, String moduleName, Staff lecturer) {
+    public Module(String moduleCode, String moduleName, ModuleSemester moduleSemester, Staff lecturer) {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
+        this.moduleSemester = moduleSemester;
 
-        enrolled = new HashSet<>();
-        lecturers = new HashSet<>();
+        enrolled = new ConcurrentSkipListSet<>();
+        lecturers = new ConcurrentSkipListSet<>();
         lecturers.add(lecturer);
     }
 
@@ -27,11 +44,11 @@ public class Module {
                 '}';
     }
 
-    public Set<Student> getEnrolled() {
+    public SortedSet<Student> getEnrolled() {
         return enrolled;
     }
 
-    public Set<Staff> getLecturers() {
+    public SortedSet<Staff> getLecturers() {
         return lecturers;
     }
 
@@ -43,6 +60,10 @@ public class Module {
         return moduleName;
     }
 
+    public ModuleSemester getModuleSemester() {
+        return moduleSemester;
+    }
+
     protected void addStudent(Student student) {
         enrolled.add(student);
         student.addModuleEnrolment(this);
@@ -51,5 +72,19 @@ public class Module {
     protected void addLecturers(Staff lecturer) {
         lecturers.add(lecturer);
         lecturer.addModuleTeaching(this);
+    }
+
+    @Override
+    public int compareTo(@NonNull Module otherModule) {
+        final int prefixLength = 3;
+
+        String thisModulePrefix = this.getModuleCode().substring(0, prefixLength);
+        String otherModulePrefix = otherModule.getModuleCode().substring(0, prefixLength);
+        String thisModuleSuffix = this.getModuleCode().substring(prefixLength);
+        String otherModuleSuffix = otherModule.getModuleCode().substring(prefixLength);
+
+        String thisCat = thisModulePrefix + this.getModuleSemester().getOrder() + thisModuleSuffix;
+        String otherCat = otherModulePrefix + otherModule.getModuleSemester().getOrder() + otherModuleSuffix;
+        return thisCat.compareTo(otherCat);
     }
 }

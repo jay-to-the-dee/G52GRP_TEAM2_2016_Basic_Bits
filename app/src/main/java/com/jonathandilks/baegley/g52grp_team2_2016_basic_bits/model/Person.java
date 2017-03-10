@@ -1,6 +1,8 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
-public abstract class Person {
+import android.support.annotation.NonNull;
+
+public abstract class Person implements Comparable<Person> {
     private String name;
     private String email;
     private String userName;
@@ -30,5 +32,9 @@ public abstract class Person {
 
     public String getUserName() {
         return userName;
+    }
+
+    public int compareTo(@NonNull Person otherPerson) {
+        return this.getName().compareTo(otherPerson.getName());
     }
 }
