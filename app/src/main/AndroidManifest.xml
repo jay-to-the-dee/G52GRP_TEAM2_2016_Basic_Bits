@@ -25,9 +25,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".ResultActivity"
-            android:label="RESULTS" /> <!-- change this placeholder to a @string or remove if label not needed -->
+        <!-- change this placeholder to a @string or remove if label not needed -->
     </application>
 
 </manifest>
