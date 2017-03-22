@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity{
                 fragment = new HomeFragment();
                 break;
             case R.id.navigation_map:
-                fragment = new MapFragment();
+                fragment = new GmapFragment();
                 break;
             default:
                 break;
