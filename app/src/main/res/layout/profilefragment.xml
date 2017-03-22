@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+  <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_image"
+            app:srcCompat="@mipmap/teddybear" />
+    </LinearLayout>
     <TextView
-        android:id="@+id/sName"
+        android:id="@+id/studentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="50dp"/>
+        android:gravity="center"
+        android:layout_alignTop="@+id/linear2"
+        android:layout_marginTop="130dp" />
+    <TextView
+        android:id="@+id/studentEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignTop="@+id/studentName"
+        android:layout_marginTop="20dp" />
+    <TextView
+        android:id="@+id/studentUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignTop="@+id/studentEmail"
+        android:layout_marginTop="20dp" />
 </RelativeLayout>
