@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.DummyData;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Staff;
 
@@ -23,9 +24,11 @@ public class TutorFragment extends Fragment{
     private TextView tutorPhone;
     private TabHost host;
 
-    private DummyData dummyData = new DummyData();
-    private Staff staff1 = dummyData.getStudents().last().getTutor();
-    public TutorFragment(){}
+    private Staff staff1;
+
+    public TutorFragment(Data data) {
+        this.staff1 = data.getStudents().last().getTutor();
+    }
 
     @Nullable
     @Override

@@ -14,6 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
+
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
@@ -21,6 +26,9 @@ public class MainActivity extends AppCompatActivity{
     private NavigationView navigationView;
     private  BottomNavigationView navigation;
     private  CharSequence mTitle;
+
+    private Data data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +53,13 @@ public class MainActivity extends AppCompatActivity{
 
         navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation) ;
         setupMainContent(navigation);
+
+        InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
+        InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
+
+        data = new Data();
+        Parser parser = new Parser(data);
+        parser.doParse(rdfStudentStream, rdfStaffStream);
     }
 
     private void setupMainContent(BottomNavigationView navigation) {
@@ -75,10 +90,10 @@ public class MainActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (item.getItemId()){
             case R.id.nav_profile_fragment:
-                fragment = new ProfileFragment();
+                fragment = new ProfileFragment(data);
                 break;
             case R.id.nav_staff_fragment:
-                fragment = new TutorFragment();
+                fragment = new TutorFragment(data);
                 break;
             case R.id.navigation_home:
                 fragment = new HomeFragment();

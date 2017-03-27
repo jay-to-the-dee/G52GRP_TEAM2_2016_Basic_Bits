@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.DummyData;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Student;
+
+import java.io.InputStream;
 
 /**
  * Created by sunenhao on 12/03/2017.
@@ -19,9 +22,12 @@ public class ProfileFragment extends Fragment {
     private TextView sName;
     private TextView sEmail;
     private TextView sUsername;
-    private DummyData dummyData = new DummyData();
-    private Student student1 = dummyData.getStudents().last();
-    public ProfileFragment(){}
+
+    private Student student1;
+
+    public ProfileFragment(Data data){
+        student1 = data.getStudents().first();
+    }
 
     @Nullable
     @Override
