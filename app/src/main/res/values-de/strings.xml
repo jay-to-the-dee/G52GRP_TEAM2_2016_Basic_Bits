@@ -12,4 +12,24 @@
     <string name="action_sign_in_short">Einloggen</string>
     <string name="permission_rationale">\"Für die Bereitstellung von E-Mail-Ergänzungen sind Kontaktberechtigungen erforderlich.\"</string>
     <string name="prompt_email">E-Mail</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="navigation_drawer_close">Schließen Sie die Navigationsschublade</string>
+    <string name="navigation_drawer_open">Öffnen Sie die Navigationsschublade</string>
+    <string name="title_activity_main3">UoN Verzeichnis</string>
+
+    <string-array name="navigation_drawer_items_array">
+        <item>Profil</item>
+        <item>Personal</item>
+        <item>Werkzeuge</item>
+        <item>Teilen</item>
+        <item>Einstellungen</item>
+    </string-array>
+
+    <string name="maptype">Kartenart auswählen</string>
+    <string-array name="map_types">
+        <item>Normal</item>
+        <item>Hybride</item>
+        <item>Satellit</item>
+        <item>Gelände</item>
+    </string-array>
 </resources>

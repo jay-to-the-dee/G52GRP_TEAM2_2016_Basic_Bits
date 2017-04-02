@@ -104,13 +104,12 @@ public class MainActivity extends AppCompatActivity{
             default:
                 break;
         }
-
-        //Pass in data
-        Bundle bundleData = new Bundle();
-        bundleData.putSerializable("data", data);
-        fragment.setArguments(bundleData);
-
         if(fragment != null) {
+            //Pass in data
+            Bundle bundleData = new Bundle();
+            bundleData.putSerializable("data", data);
+            fragment.setArguments(bundleData);
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
