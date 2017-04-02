@@ -1,9 +1,10 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
+import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-public class Data {
+public class Data implements Serializable {
     private SortedSet<Staff> staff;
     private SortedSet<Student> students;
     private SortedSet<Module> modules;

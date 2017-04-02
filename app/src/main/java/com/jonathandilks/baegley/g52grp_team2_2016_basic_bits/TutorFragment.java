@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.DummyData;
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Staff;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.*;
 
 /**
  * Created by sunenhao on 12/03/2017.
@@ -26,17 +24,19 @@ public class TutorFragment extends Fragment{
 
     private Staff staff1;
 
-    public TutorFragment(Data data) {
-        this.staff1 = data.getStudents().last().getTutor();
-    }
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        Bundle extras = getArguments();
+        Data data = (Data) extras.getSerializable("data");
+        this.staff1 = data.getStudents().last().getTutor();
+
         View rootView = inflater.inflate(R.layout.tutorfragment, container, false);
         addTutorInfo(staff1, rootView);
         return rootView;
     }
+
     public void addTutorInfo(Staff staff, View rootView){
         tutorName = (TextView) rootView.findViewById(R.id.tutorName);
         tutorEmail = (TextView) rootView.findViewById(R.id.tutorEmail);

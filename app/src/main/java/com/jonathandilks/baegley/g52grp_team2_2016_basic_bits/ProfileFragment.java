@@ -8,11 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
-import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Student;
-
-import java.io.InputStream;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.*;
 
 /**
  * Created by sunenhao on 12/03/2017.
@@ -25,13 +21,14 @@ public class ProfileFragment extends Fragment {
 
     private Student student1;
 
-    public ProfileFragment(Data data){
-        student1 = data.getStudents().first();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        Bundle extras = getArguments();
+        Data data = (Data) extras.getSerializable("data");
+
+        student1 = data.getStudents().first();
+
         View rootView = inflater.inflate(R.layout.profilefragment, container, false);
         addStudentInfo(student1, rootView);
         return rootView;

@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (item.getItemId()){
             case R.id.nav_profile_fragment:
-                fragment = new ProfileFragment(data);
+                fragment = new ProfileFragment();
                 break;
             case R.id.nav_staff_fragment:
-                fragment = new TutorFragment(data);
+                fragment = new TutorFragment();
                 break;
             case R.id.navigation_home:
                 fragment = new HomeFragment();
@@ -104,6 +104,12 @@ public class MainActivity extends AppCompatActivity{
             default:
                 break;
         }
+
+        //Pass in data
+        Bundle bundleData = new Bundle();
+        bundleData.putSerializable("data", data);
+        fragment.setArguments(bundleData);
+
         if(fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
@@ -157,5 +163,4 @@ public class MainActivity extends AppCompatActivity{
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
     }
-
 }
