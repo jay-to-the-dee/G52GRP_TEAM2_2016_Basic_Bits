@@ -1,0 +1,8 @@
+language: android  # this means the project will be built in an Android environment
+
+android:
+  components:
+    - tools               # will use latest version of Android SDK tools
+    - platform-tools      # as above
+    - build-tools-25.0.2  # buildToolsVersion
+    - android-25          # compileSdkVersion
