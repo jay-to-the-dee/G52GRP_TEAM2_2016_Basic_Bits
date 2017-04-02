@@ -25,7 +25,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         Bundle extras = getArguments();
-        Data data = (Data) extras.getSerializable("data");
+        Data data = (Data) extras.getParcelable("data");
 
         student1 = data.getStudents().first();
 

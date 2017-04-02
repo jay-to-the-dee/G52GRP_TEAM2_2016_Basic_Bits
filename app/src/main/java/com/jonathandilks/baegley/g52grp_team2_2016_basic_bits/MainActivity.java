@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity{
         if(fragment != null) {
             //Pass in data
             Bundle bundleData = new Bundle();
-            bundleData.putSerializable("data", data);
+            bundleData.putParcelable("data", data);
             fragment.setArguments(bundleData);
 
             FragmentManager fragmentManager = getSupportFragmentManager();
