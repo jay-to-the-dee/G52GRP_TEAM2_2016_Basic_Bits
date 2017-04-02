@@ -1,4 +1,5 @@
 language: android  # this means the project will be built in an Android environment
+jdk: oraclejdk8
 
 android:
   components:
