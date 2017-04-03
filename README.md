@@ -1,5 +1,9 @@
 # G52GRP Team 2
 Basic Bits
+
+## Current CI status
+[![Build Status](https://travis-ci.com/jay-to-the-dee/G52GRP_TEAM2_2016_Basic_Bits.svg?token=GhupFuJpJiDAhoRspqbX&branch=master)](https://travis-ci.com/jay-to-the-dee/G52GRP_TEAM2_2016_Basic_Bits)
+
 ## Contributors
 * Vappu Koskela
 * Jonathan Dilks
