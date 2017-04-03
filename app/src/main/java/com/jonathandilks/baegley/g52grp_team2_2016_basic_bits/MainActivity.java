@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity{
     private  CharSequence mTitle;
 
     private Data data;
+    private Bundle bundleData;
+
+    private ProfileFragment profileFragment;
+    private TutorFragment tutorFragment;
+    private HomeFragment homeFragment;
+    private GmapFragment gmapFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +64,19 @@ public class MainActivity extends AppCompatActivity{
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
 
+        //Initialise model
         data = new Data();
         Parser parser = new Parser(data);
         parser.doParse(rdfStudentStream, rdfStaffStream);
+
+        bundleData = new Bundle();
+        bundleData.putParcelable("data", data);
+
+        //Initialise our fragments
+        profileFragment = new ProfileFragment();
+        tutorFragment = new TutorFragment();
+        homeFragment = new HomeFragment();
+        gmapFragment = new GmapFragment();
     }
 
     private void setupMainContent(BottomNavigationView navigation) {
@@ -90,24 +107,22 @@ public class MainActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (item.getItemId()){
             case R.id.nav_profile_fragment:
-                fragment = new ProfileFragment();
+                fragment = profileFragment;
                 break;
             case R.id.nav_staff_fragment:
-                fragment = new TutorFragment();
+                fragment = tutorFragment;
                 break;
             case R.id.navigation_home:
-                fragment = new HomeFragment();
+                fragment = homeFragment;
                 break;
             case R.id.navigation_map:
-                fragment = new GmapFragment();
+                fragment = gmapFragment;
                 break;
             default:
                 break;
         }
         if(fragment != null) {
             //Pass in data
-            Bundle bundleData = new Bundle();
-            bundleData.putParcelable("data", data);
             fragment.setArguments(bundleData);
 
             FragmentManager fragmentManager = getSupportFragmentManager();
