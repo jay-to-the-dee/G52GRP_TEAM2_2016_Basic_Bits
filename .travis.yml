@@ -4,9 +4,12 @@ android:
   components:
     - tools               # will use latest version of Android SDK tools
     - tools               # Apparently declaring twice fixes a Travis bug - the group project is run by the tools!
+    - platform-tools
     - build-tools-25.0.2  # buildToolsVersion
-    - platform-tools      # as above
     - android-25          # compileSdkVersion
-    - sys-img-armeabi-v7a-android-25 # Let's run in a suitable emulator
+#    - sys-img-armeabi-v7a-android-25 # Let's run in a suitable emulator
 
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
+
+sudo: false
