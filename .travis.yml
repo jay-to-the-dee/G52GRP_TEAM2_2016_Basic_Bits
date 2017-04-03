@@ -1,3 +1,5 @@
+sudo: false
+
 language: android  # this means the project will be built in an Android environment
 
 android:
@@ -9,9 +11,10 @@ android:
     - android-25          # compileSdkVersion
     - extra-android-m2repository
     - extra-google-m2repository
-#    - sys-img-armeabi-v7a-android-25 # Let's run in a suitable emulator
+    - sys-img-armeabi-v7a-android-25 # Let's run in a suitable emulator
 
 jdk:
   - oraclejdk8
 
-sudo: false
+script:
+  - ./gradlew test
