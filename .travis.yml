@@ -7,6 +7,8 @@ android:
     - platform-tools
     - build-tools-25.0.2  # buildToolsVersion
     - android-25          # compileSdkVersion
+    - extra-android-m2repository
+    - extra-google-m2repository
 #    - sys-img-armeabi-v7a-android-25 # Let's run in a suitable emulator
 
 jdk:
