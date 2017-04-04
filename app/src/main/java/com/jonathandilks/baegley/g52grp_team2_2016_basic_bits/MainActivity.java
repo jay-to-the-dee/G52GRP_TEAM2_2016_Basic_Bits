@@ -75,8 +75,13 @@ public class MainActivity extends AppCompatActivity{
         //Initialise our fragments
         profileFragment = new ProfileFragment();
         tutorFragment = new TutorFragment();
+
         homeFragment = new HomeFragment();
         gmapFragment = new GmapFragment();
+
+        //Pass in data
+        tutorFragment.setArguments(bundleData);
+        profileFragment.setArguments(bundleData);
     }
 
     private void setupMainContent(BottomNavigationView navigation) {
@@ -122,9 +127,6 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
         if(fragment != null) {
-            //Pass in data
-            fragment.setArguments(bundleData);
-
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
