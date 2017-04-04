@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity{
     private HomeFragment homeFragment;
     private GmapFragment gmapFragment;
 
+    public MainActivity() {
+        //Initialise our fragments
+        profileFragment = new ProfileFragment();
+        tutorFragment = new TutorFragment();
+
+        homeFragment = new HomeFragment();
+        gmapFragment = new GmapFragment();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +79,6 @@ public class MainActivity extends AppCompatActivity{
 
         bundleData = new Bundle();
         bundleData.putParcelable("data", data);
-
-        //Initialise our fragments
-        profileFragment = new ProfileFragment();
-        tutorFragment = new TutorFragment();
-
-        homeFragment = new HomeFragment();
-        gmapFragment = new GmapFragment();
 
         //Pass in data
         tutorFragment.setArguments(bundleData);
