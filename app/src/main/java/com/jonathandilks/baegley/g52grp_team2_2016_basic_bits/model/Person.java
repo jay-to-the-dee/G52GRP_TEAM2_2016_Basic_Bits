@@ -2,7 +2,9 @@ package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
 import android.support.annotation.NonNull;
 
-public abstract class Person implements Comparable<Person> {
+import java.io.Serializable;
+
+public abstract class Person implements Comparable<Person>, Serializable {
     private String name;
     private String email;
     private String userName;

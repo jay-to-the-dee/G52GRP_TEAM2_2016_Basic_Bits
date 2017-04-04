@@ -29,7 +29,7 @@ public class TutorFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         Bundle extras = getArguments();
-        Data data = (Data) extras.getParcelable("data");
+        Data data = (Data) extras.getSerializable("data");
         this.staff1 = data.getStudents().last().getTutor();
 
         View rootView = inflater.inflate(R.layout.tutorfragment, container, false);

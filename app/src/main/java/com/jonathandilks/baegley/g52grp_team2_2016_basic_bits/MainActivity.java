@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
         parser.doParse(rdfStudentStream, rdfStaffStream);
 
         bundleData = new Bundle();
-        bundleData.putParcelable("data", data);
+        bundleData.putSerializable("data", data);
 
         //Pass in data
         tutorFragment.setArguments(bundleData);

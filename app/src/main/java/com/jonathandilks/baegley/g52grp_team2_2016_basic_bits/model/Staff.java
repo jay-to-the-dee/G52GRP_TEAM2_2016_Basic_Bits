@@ -1,9 +1,10 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
+import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-public class Staff extends Person {
+public class Staff extends Person implements Serializable {
     private String phoneNo;
     private String office;
     private String webPageURL;
@@ -41,9 +42,11 @@ public class Staff extends Person {
 
     protected void addStudent(Student student) {
         tutees.add(student);
+        //TODO
     }
 
     protected void addModuleTeaching(Module module) {
         modulesTaught.add(module);
+        //TODO
     }
 }
