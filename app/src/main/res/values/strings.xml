@@ -29,7 +29,7 @@
         <item>Share</item>
         <item>Settings</item>
     </string-array>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCzQG7BRxB0ajKnCGTO39PPDysFlryjZVA</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBJg-O5rio0GlfnEPeY_2h_JZ7_o4M03xM</string>
     <string-array name="map_types">
         <item>Normal</item>
         <item>Hybrid</item>
