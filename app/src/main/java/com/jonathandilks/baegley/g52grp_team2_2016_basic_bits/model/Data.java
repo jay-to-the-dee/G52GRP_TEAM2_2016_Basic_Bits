@@ -50,4 +50,17 @@ public class Data implements Serializable {
     public SortedSet<Module> getModules() {
         return modules;
     }
+
+    public SortedSet<Person> getSubset(String searchString)
+    {
+        SortedSet<Person> everyone = getEveryone();
+        SortedSet<Person> results = new ConcurrentSkipListSet<>();
+
+        for (Person e : everyone) {
+            if (e.getName().contains(searchString)) {
+                results.add(e);
+            }
+        }
+        return results;
+    }
 }
