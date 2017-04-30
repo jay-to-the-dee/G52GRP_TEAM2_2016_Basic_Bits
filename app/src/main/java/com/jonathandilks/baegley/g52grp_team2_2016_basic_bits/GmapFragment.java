@@ -1,11 +1,8 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 /**
@@ -45,6 +37,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
         adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(), R.array.map_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
+        spinner.setSelection(1); //Hybrid mode is now default
 
         return rootView;
     }
@@ -58,30 +51,30 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-        final LatLng CSbuilding = new LatLng(52.9533, -1.187326);
+        final LatLng CSbuilding = new LatLng(52.9533, -1.18724);
+        final float STRAIGHT_BEARING = -18.1f;
+        final float DESIRED_ZOOM = 19.1f;
 
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(
-                new CameraPosition.Builder()
-                        .target(CSbuilding)
-                        .tilt(0)
-                        .zoom(17)
-                        .build()));
+//        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+//                new CameraPosition.Builder()
+//                        .target(CSbuilding)
+//                        .tilt(0)
+//                        .zoom((float) (DESIRED_ZOOM) - 1.5f)
+//                        .build()));
 
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                         .target(CSbuilding)
-                        .tilt(0)
-                        .zoom(19)
-                        .bearing((float) -18.1)
+                        .zoom(DESIRED_ZOOM)
+                        .bearing(STRAIGHT_BEARING)
                         .build()));
 
         googleMap.setMinZoomPreference(15);
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch ((int)id){
+                switch ((int) id) {
                     case 0:
                         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                         break;
