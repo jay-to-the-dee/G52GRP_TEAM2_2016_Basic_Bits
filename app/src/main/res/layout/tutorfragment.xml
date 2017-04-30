@@ -50,7 +50,7 @@
             android:layout_marginTop="20dp" />
 
     <TabHost
-        android:id="@+id/tabHost"
+        android:id="@+id/tutorTabHost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/tutorPhone"
@@ -72,7 +72,7 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/tabModule"
+                    android:id="@+id/tutorModule"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -80,7 +80,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/tabTutees"
+                    android:id="@+id/tutorTutees"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">

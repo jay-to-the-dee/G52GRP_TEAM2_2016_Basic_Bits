@@ -42,16 +42,16 @@ public class TutorFragment extends Fragment{
         tutorEmail = (TextView) rootView.findViewById(R.id.tutorEmail);
         tutorOffice = (TextView) rootView.findViewById(R.id.tutorOffice);
         tutorPhone = (TextView) rootView.findViewById(R.id.tutorPhone);
-        host = (TabHost) rootView.findViewById(R.id.tabHost);
+        host = (TabHost) rootView.findViewById(R.id.tutorTabHost);
         host.setup();
         // Tab module
         TabHost.TabSpec spec = host.newTabSpec("MODULE");
-        spec.setContent(R.id.tabModule);
+        spec.setContent(R.id.tutorModule);
         spec.setIndicator("MODULE");
         host.addTab(spec);
 
         spec = host.newTabSpec("TUTEES");
-        spec.setContent(R.id.tabTutees);
+        spec.setContent(R.id.tutorTutees);
         spec.setIndicator("TUTEES");
         host.addTab(spec);
 
