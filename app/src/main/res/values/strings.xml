@@ -37,4 +37,7 @@
         <item>Terrain</item>
     </string-array>
     <string name="maptype">Select Maptype</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">hint</string>
+    <string name="search_title">Search</string>
 </resources>

@@ -1,10 +1,13 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,8 +28,8 @@ public class MainActivity extends AppCompatActivity{
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-    private  BottomNavigationView navigation;
-    private  CharSequence mTitle;
+    private BottomNavigationView navigation;
+    private CharSequence mTitle;
 
     private Data data;
     private Bundle bundleData;
@@ -34,13 +37,14 @@ public class MainActivity extends AppCompatActivity{
     private ProfileFragment profileFragment;
     private TutorFragment tutorFragment;
     private HomeFragment homeFragment;
+    private CastleFragment castleFragment;
     private GmapFragment gmapFragment;
 
     public MainActivity() {
         //Initialise our fragments
         profileFragment = new ProfileFragment();
         tutorFragment = new TutorFragment();
-
+        castleFragment = new CastleFragment();
         homeFragment = new HomeFragment();
         gmapFragment = new GmapFragment();
     }
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity{
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -84,6 +88,8 @@ public class MainActivity extends AppCompatActivity{
         //Pass in data
         tutorFragment.setArguments(bundleData);
         profileFragment.setArguments(bundleData);
+        castleFragment.setArguments(bundleData);
+        handleIntent(getIntent());
     }
 
     private void setupMainContent(BottomNavigationView navigation) {
@@ -122,6 +128,9 @@ public class MainActivity extends AppCompatActivity{
             case R.id.navigation_home:
                 fragment = homeFragment;
                 break;
+            case R.id.navigation_castle:
+                fragment = castleFragment;
+                break;
             case R.id.navigation_map:
                 fragment = gmapFragment;
                 break;
@@ -131,7 +140,6 @@ public class MainActivity extends AppCompatActivity{
         if(fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-
             item.setChecked(true);
             setTitle(item.getTitle());
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -153,26 +161,43 @@ public class MainActivity extends AppCompatActivity{
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }
+    }
+    private void doSearch(String query){
+
+    }
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search_icon, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search_item).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+        //searchView.setIconified(true);
+        searchView.setQueryHint("Search...");
         return true;
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handles action bar clicks such as the search button
-
-        int id = item.getItemId();
         // if clicked item's id is the search
-        if (id == R.id.menu_search_item) {
-            Intent intent = new Intent(this, SearchActivity.class);
-            startActivity(intent);
-            return true;
+        switch (item.getItemId()){
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
+    */
 
     @SuppressWarnings("StatementWithEmptyBody")
 
