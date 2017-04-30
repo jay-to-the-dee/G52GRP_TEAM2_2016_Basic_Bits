@@ -13,10 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -52,9 +58,25 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(0, 0))
-                .title("Marker"));
+        final LatLng CSbuilding = new LatLng(52.9533, -1.187326);
+
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+                new CameraPosition.Builder()
+                        .target(CSbuilding)
+                        .tilt(0)
+                        .zoom(17)
+                        .build()));
+
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                new CameraPosition.Builder()
+                        .target(CSbuilding)
+                        .tilt(0)
+                        .zoom(19)
+                        .bearing((float) -18.1)
+                        .build()));
+
+        googleMap.setMinZoomPreference(15);
+
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
