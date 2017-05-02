@@ -15,8 +15,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.IndoorBuilding;
 import com.google.android.gms.maps.model.IndoorLevel;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     private Spinner spinner;
     ArrayAdapter<CharSequence> adapter;
     private String roomNumberToFocus = null;
+    private Marker roomMarker;
 
     public GmapFragment() {
     }
@@ -160,13 +163,13 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
             public void onMapLoaded() {
                 if (roomNumberToFocus != null) {
                     int roomLevelIndex = doRoomToLevelLookup(roomNumberToFocus);
-                    if (roomLevelIndex!=-1) {
+                    if (roomLevelIndex != -1) {
                         List<IndoorLevel> levels = googleMap.getFocusedBuilding().getLevels();
                         levels.get(roomLevelIndex).activate();
 
                         LatLng latLng = doRoomToLatLngLookup(roomNumberToFocus);
-                        if (latLng!=null) {
-                            googleMap.addMarker(new MarkerOptions()
+                        if (latLng != null) {
+                            roomMarker = googleMap.addMarker(new MarkerOptions()
                                     .position(latLng)
                                     .title(roomNumberToFocus));
                         }
@@ -180,6 +183,28 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
                                 .bearing(STRAIGHT_BEARING)
                                 .build()));
             }
+        });
+
+        googleMap.setOnIndoorStateChangeListener(new GoogleMap.OnIndoorStateChangeListener() {
+
+            @Override
+            public void onIndoorBuildingFocused() {
+
+            }
+
+            @Override
+            public void onIndoorLevelActivated(IndoorBuilding building) {
+                if (roomMarker != null) {
+                    int activeLevelIndex = building.getActiveLevelIndex();
+                    int roomLevelIndex = doRoomToLevelLookup(roomNumberToFocus);
+
+                    if (activeLevelIndex != roomLevelIndex) {
+                        roomMarker.remove();
+                        roomMarker = null;
+                    }
+                }
+            }
+
         });
     }
 }
