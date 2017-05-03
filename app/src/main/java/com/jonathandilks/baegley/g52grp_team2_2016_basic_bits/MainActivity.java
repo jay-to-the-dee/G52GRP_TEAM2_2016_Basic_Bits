@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity{
     private HomeFragment homeFragment;
     private CastleFragment castleFragment;
     private GmapFragment gmapFragment;
+
 
     public MainActivity() {
         //Initialise our fragments

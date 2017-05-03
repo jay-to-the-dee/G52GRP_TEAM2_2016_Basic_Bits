@@ -17,18 +17,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <include
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         </LinearLayout>
         <FrameLayout
                 android:id="@+id/flContent"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.8">
+
         </FrameLayout>
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -36,7 +39,9 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:layout_gravity="bottom"
-            app:menu="@menu/navigation" />
+            app:menu="@menu/navigation" >
+
+        </android.support.design.widget.BottomNavigationView>
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
