@@ -31,15 +31,8 @@ public class Parser {
     }
 
     public void doParse (InputStream isStudent, InputStream isStaff) {
-
         parseStudents(isStudent);
         parseStaff(isStaff);
-
-        //Student firstStudent = rdfData.getStudents().first();
-        //Log.d(TAG, "WHALE first student: " + firstStudent.toString());
-
-        //Staff firstStaff = rdfData.getStaff().first();
-        //Log.d(TAG, "WHALE first staff:   " + firstStaff.toString());
     }
 
     private void parseStudents(InputStream is) {
@@ -47,8 +40,6 @@ public class Parser {
         Staff emptyStaff = new Staff("","","","","","");
 
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
-
-        Log.d(TAG, "WHALE student:");
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -67,14 +58,9 @@ public class Parser {
                 String rdfFullName = getValue("v:FN", eItem);
                 String rdfEmail = getValue("v:email", eItem);
 
-                Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
-                Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
-
                 Student student = new Student(rdfFullName, rdfEmail, "", emptyStaff);
-                Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + student.toString());
 
                 int setSize = rdfData.addStudent(student);
-                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
             }
 
         } catch (Exception e) {
@@ -84,8 +70,6 @@ public class Parser {
 
     private void parseStaff(InputStream is) {
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
-
-        Log.d(TAG, "WHALE staff:");
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -106,16 +90,9 @@ public class Parser {
                 String rdfPhone = getValue("v:tel", eItem);
                 String rdfOffice = getValue("information:office", eItem);
 
-                Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
-                Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
-                Log.d(TAG, "WHALE " + i + "       PHONE: " + rdfPhone);
-                Log.d(TAG, "WHALE " + i + "      OFFICE: " + rdfOffice);
-
                 Staff staff = new Staff(rdfFullName, rdfEmail, "", rdfPhone, rdfOffice, "");
-                Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + staff.toString());
 
                 int setSize = rdfData.addStaff(staff);
-                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
             }
 
         } catch (Exception e) {
