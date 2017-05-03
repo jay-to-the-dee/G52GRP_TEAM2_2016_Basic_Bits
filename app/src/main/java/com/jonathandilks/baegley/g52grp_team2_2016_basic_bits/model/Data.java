@@ -57,7 +57,7 @@ public class Data implements Serializable {
         SortedSet<Person> results = new ConcurrentSkipListSet<>();
 
         for (Person e : everyone) {
-            if (e.getName().contains(searchString)) {
+            if (e.getName().toLowerCase().contains(searchString.toLowerCase())) {
                 results.add(e);
             }
         }
