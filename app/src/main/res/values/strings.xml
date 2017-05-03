@@ -40,4 +40,8 @@
     <string name="app_label">Search</string>
     <string name="search_hint">hint</string>
     <string name="search_title">Search</string>
+    <string name="navigation_profile">Profile</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_map">Map</string>
+    <string name="navigation_about">About</string>
 </resources>

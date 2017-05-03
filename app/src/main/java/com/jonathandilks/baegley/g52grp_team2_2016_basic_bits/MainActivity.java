@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-    private BottomNavigationView navigation;
     private CharSequence mTitle;
 
     private Data data;
@@ -39,21 +39,21 @@ public class MainActivity extends AppCompatActivity
     private Bundle searchData;
 
     private ProfileFragment profileFragment;
-    private TutorFragment tutorFragment;
     private HomeFragment homeFragment;
     private CastleFragment castleFragment;
     private GmapFragment gmapFragment;
     private SearchresultsFragment sresultFragment;
+    private AboutFragment aboutFragment;
 
 
     public MainActivity() {
         //Initialise our fragments
         profileFragment = new ProfileFragment();
-        tutorFragment = new TutorFragment();
         castleFragment = new CastleFragment();
         homeFragment = new HomeFragment();
         gmapFragment = new GmapFragment();
         sresultFragment = new SearchresultsFragment();
+        aboutFragment = new AboutFragment();
     }
 
     @Override
@@ -78,9 +78,6 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
 
-        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation) ;
-        setupMainContent(navigation);
-
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
 
@@ -95,31 +92,21 @@ public class MainActivity extends AppCompatActivity
         bundleData.putSerializable("data", data);
 
         //Pass in data
-        tutorFragment.setArguments(bundleData);
         profileFragment.setArguments(bundleData);
         castleFragment.setArguments(bundleData);
+
+        //getSupportFragmentManager().beginTransaction().add(R.id.flContent, homeFragment).commit();
 
         handleIntent(getIntent());
     }
 
     public void onItemSelected(Person p){
         if(profileFragment != null) {
-            profileFragment.updateProfile(p);
             switchFragment(profileFragment, "Profile");
+            profileFragment.updateProfile(p);
         }
     }
 
-    private void setupMainContent(BottomNavigationView navigation) {
-        navigation.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener(){
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem){
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                }
-        );
-    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -135,8 +122,8 @@ public class MainActivity extends AppCompatActivity
 
     private void switchFragment(Fragment fragment, String title){
         if(fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.flContent, fragment).commit();
             setTitle(title);
         }else{
             Log.e("MainActivity", "Error in creating fragment");
@@ -149,18 +136,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_profile_fragment:
                 fragment = profileFragment;
                 break;
-            case R.id.nav_staff_fragment:
-                fragment = tutorFragment;
-                break;
-            case R.id.navigation_home:
+            case R.id.nav_home_fragment:
                 fragment = homeFragment;
                 break;
-            case R.id.navigation_castle:
-                fragment = castleFragment;
-                break;
-            case R.id.navigation_map:
+            case R.id.nav_map_fragment:
                 fragment = gmapFragment;
                 break;
+            case R.id.nav_about_fragment:
+                fragment = aboutFragment;
             default:
                 break;
         }
@@ -202,15 +185,7 @@ public class MainActivity extends AppCompatActivity
         sresultFragment.setQuery(query);
         sresultFragment.setArguments(searchData);
         Fragment fragment = sresultFragment;
-        if(fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-            setTitle("Result");
-            //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            //drawer.closeDrawer(GravityCompat.START);
-        }else{
-            Log.e("MainActivity", "Error in creating fragment");
-        }
+        switchFragment(fragment, "Result");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
