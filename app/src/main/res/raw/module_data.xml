@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:information="http://www.basicbits.info/module-information#"
+		xmlns:v="http://www.w3.org/2001/vcard-rdf/3.0#">
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/WZF/">
+			<information:id>G51WZF</information:id>
+			<information:name>Wizarding Fundamentals</information:name>
+			<information:semester>Autumn</information:semester>
+			<information:lecturer>jkrlv</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/MWS/">
+			<information:id>G51MWS</information:id>
+			<information:name>Maths for Wizard Scientists</information:name>
+			<information:semester>Autumn</information:semester>
+			<information:lecturer>jkrnhn</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/CSC/">
+			<information:id>G52CSC</information:id>
+			<information:name>Concurrent Spell Casting</information:name>
+			<information:semester>Autumn</information:semester>
+			<information:lecturer>jkrsb</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/MGA/">
+			<information:id>G51MGA</information:id>
+			<information:name>Magical Algorithms</information:name>
+			<information:semester>Autumn</information:semester>
+			<information:lecturer>jkrad</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/MLE/">
+			<information:id>G53MLE</information:id>
+			<information:name>Muggle Learning</information:name>
+			<information:semester>Autumn</information:semester>
+			<information:lecturer>jkram</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/PRT/">
+			<information:id>G54PRT</information:id>
+			<information:name>Introduction to Parseltongue</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrrh</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/AFW/">
+			<information:id>G52AFW</information:id>
+			<information:name>Advanced Functional Wizardry</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrgl</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/CPP/">
+			<information:id>G52CPP</information:id>
+			<information:name>Communicating Perfect Parseltongue</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrrl</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/MWI/">
+			<information:id>G52MWI</information:id>
+			<information:name>Muggle-Wizard Interaction</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrmm</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/FWE/">
+			<information:id>G51FWE</information:id>
+			<information:name>Fundamentals of Wand Engineering</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrss</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/TLI/">
+			<information:id>G51TLI</information:id>
+			<information:name>Tea Leaf Intelligence</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrst</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/SCE/">
+			<information:id>G52SCE</information:id>
+			<information:name>Spells, Correctness and Efficiency</information:name>
+			<information:semester>Full Year</information:semester>
+			<information:lecturer>jkraf</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/PEQ/">
+			<information:id>G53PEQ</information:id>
+			<information:name>Professional Ethics in Quidditch</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrff</information:lecturer>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/module/SCP/">
+			<information:id>G51SCP</information:id>
+			<information:name>Spell Casting Paradigms</information:name>
+			<information:semester>Spring</information:semester>
+			<information:lecturer>jkrgl</information:lecturer>
+			<information:lecturer>jkrrl</information:lecturer>
+		</rdf:Description>
+
+	</rdf:RDF>
