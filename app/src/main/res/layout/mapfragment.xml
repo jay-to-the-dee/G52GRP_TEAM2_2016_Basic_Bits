@@ -24,10 +24,4 @@
     <!--        map:cameraTargetLat="52.9533"
 map:cameraTargetLng="-1.187326"-->
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"/>
-
 </FrameLayout>
