@@ -33,13 +33,14 @@ public class CastleFragment extends Fragment {
     private LinearLayout markContent;
     private LinearLayout surveyContent;
 
-    private ExpandableListAdapter listAdapter1;
-    private ExpandableListAdapter listAdapter2;
+    private ExpandableListAdapter listAdapter;
 
     private List<String> listmoduleHeader;
     private HashMap<String, List<String>> listmoduleHash;
     private List<String> listMarkHeader;
     private HashMap<String, List<String>> listmarkHash;
+    private List<String> listSurveyHeader;
+    private HashMap<String, List<String>> listSurveykHash;
 
     private SortedSet<Module> modules;
 
@@ -61,38 +62,27 @@ public class CastleFragment extends Fragment {
 
         moduleContent = (LinearLayout) rootView.findViewById(R.id.myModuleTab);
         markContent = (LinearLayout) rootView.findViewById(R.id.myMarkTab);
-        markContent.setVisibility(View.GONE);
         surveyContent = (LinearLayout) rootView.findViewById(R.id.mySurveyTab);
-        surveyContent.setVisibility(View.GONE);
 
         modules = data.getStudents().first().getModulesEnrolled();
         initData();
 
-        listAdapter1 = new ExpandableListAdapter(getContext(), listmoduleHeader, listmoduleHash);
-        moduleList.setAdapter(listAdapter1);
-        listAdapter2 = new ExpandableListAdapter(getContext(), listMarkHeader, listmarkHash);
-        markList.setAdapter(listAdapter2);
-        //surveyList.setAdapter(listAdapter);
+        listAdapter = new ExpandableListAdapter(getContext(), listmoduleHeader, listmoduleHash);
+        moduleList.setAdapter(listAdapter);
+        listAdapter = new ExpandableListAdapter(getContext(), listMarkHeader, listmarkHash);
+        markList.setAdapter(listAdapter);
+        listAdapter = new ExpandableListAdapter(getContext(), listSurveyHeader, listSurveykHash);
+        surveyList.setAdapter(listAdapter);
+
         setHostContent(host);
         return rootView;
     }
 
-    public void setHostContent(TabHost host){
-        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+    public void setHostContent(final TabHost h){
+        h.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                switch (tabId)
-                {
-                    case "myModuleTab":
-                        moduleContent.setVisibility(View.VISIBLE);
-                        markContent.setVisibility(View.GONE);
-                        break;
-                    case "myMarkTab":
-                        moduleContent.setVisibility(View.GONE);
-                        markContent.setVisibility(View.VISIBLE);
-                        break;
-                    default:break;
-                }
+                h.setCurrentTabByTag(tabId);
             }
         });
     }
@@ -116,6 +106,9 @@ public class CastleFragment extends Fragment {
         listmoduleHash = new HashMap<>();
         listMarkHeader = new ArrayList<>();
         listmarkHash = new HashMap<>();
+        listSurveyHeader = new ArrayList<>();
+        listSurveykHash = new HashMap<>();
+
         List<String> moduleDetails = new ArrayList<>();
         List<String> mark = new ArrayList<>();
         int index = 0;
