@@ -40,6 +40,13 @@
 			<information:lecturer>jkram</information:lecturer>
 		</rdf:Description>
 
+		<rdf:Description rdf:about="http://www.basicbits.info/module/FWE/">
+			<information:id>G52GRP</information:id>
+			<information:name>Ghastly Ridiculous Project</information:name>
+			<information:semester>Full Year</information:semester>
+			<information:lecturer>jkrdu</information:lecturer>
+		</rdf:Description>
+
 		<rdf:Description rdf:about="http://www.basicbits.info/module/PRT/">
 			<information:id>G54PRT</information:id>
 			<information:name>Introduction to Parseltongue</information:name>
