@@ -32,7 +32,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     static final LatLng CSbuilding = new LatLng(52.9533, -1.18724);
 
     private Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
+    private ArrayAdapter<CharSequence> adapter;
     private String roomNumberToFocus = null;
     private Marker roomMarker;
 
@@ -43,6 +43,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
         this.roomNumberToFocus = roomNumberToFocus;
     }
 
+    @Nullable
     private static LatLng doRoomToLatLngLookup(String roomNumberToFocus) {
         switch (roomNumberToFocus) {
             case "C55":
@@ -97,7 +98,6 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.mapfragment, container, false);
@@ -105,7 +105,6 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
         adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(), R.array.map_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
-        spinner.setSelection(1); //Hybrid mode is now default
 
         return rootView;
     }
@@ -119,6 +118,8 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+        spinner.setSelection(1); //Hybrid mode is now default
+
         final float STRAIGHT_BEARING = -18.1f;
         final float DESIRED_ZOOM = 19.1f;
 
