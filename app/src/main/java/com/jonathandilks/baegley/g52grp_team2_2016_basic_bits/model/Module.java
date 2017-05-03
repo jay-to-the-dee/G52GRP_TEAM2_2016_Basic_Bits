@@ -16,6 +16,22 @@ enum ModuleSemester {
     public int getOrder() {
         return order;
     }
+/*
+    public String toString()
+    {
+        switch (this.order)
+        {
+            case 1:
+                return "Whole Year";
+            case 2:
+                return "Autumn";
+            case 3:
+                return "Spring";
+            default:
+                return "Unknown Semester";
+        }
+    }
+    */
 };
 
 public class Module implements Comparable<Module> {

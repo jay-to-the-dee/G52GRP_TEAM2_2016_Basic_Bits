@@ -20,10 +20,12 @@ import android.view.MenuItem;
 
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Person;
 
 import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity
+        implements SearchresultsFragment.OnProfileSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -33,12 +35,14 @@ public class MainActivity extends AppCompatActivity{
 
     private Data data;
     private Bundle bundleData;
+    private Bundle searchData;
 
     private ProfileFragment profileFragment;
     private TutorFragment tutorFragment;
     private HomeFragment homeFragment;
     private CastleFragment castleFragment;
     private GmapFragment gmapFragment;
+    private SearchresultsFragment sresultFragment;
 
     public MainActivity() {
         //Initialise our fragments
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
         castleFragment = new CastleFragment();
         homeFragment = new HomeFragment();
         gmapFragment = new GmapFragment();
+        sresultFragment = new SearchresultsFragment();
     }
 
     @Override
@@ -83,13 +88,23 @@ public class MainActivity extends AppCompatActivity{
         parser.doParse(rdfStudentStream, rdfStaffStream);
 
         bundleData = new Bundle();
+        searchData = new Bundle();
+
         bundleData.putSerializable("data", data);
 
         //Pass in data
         tutorFragment.setArguments(bundleData);
         profileFragment.setArguments(bundleData);
         castleFragment.setArguments(bundleData);
+
         handleIntent(getIntent());
+    }
+
+    public void onItemSelected(Person p){
+        if(profileFragment != null) {
+            profileFragment.updateProfile(p);
+            switchFragment(profileFragment, "Profile");
+        }
     }
 
     private void setupMainContent(BottomNavigationView navigation) {
@@ -116,6 +131,16 @@ public class MainActivity extends AppCompatActivity{
         );
     }
 
+    private void switchFragment(Fragment fragment, String title){
+        if(fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            setTitle(title);
+        }else{
+            Log.e("MainActivity", "Error in creating fragment");
+        }
+    }
+
     private void selectDrawerItem(MenuItem item) {
         Fragment fragment = null;
         switch (item.getItemId()){
@@ -138,15 +163,14 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
         if(fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             item.setChecked(true);
-            setTitle(item.getTitle());
+            switchFragment(fragment, item.getTitle().toString());
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         }else{
             Log.e("MainActivity", "Error in creating fragment");
         }
+
     }
 
 
@@ -172,7 +196,19 @@ public class MainActivity extends AppCompatActivity{
         }
     }
     private void doSearch(String query){
-
+        searchData.putSerializable(query, data);
+        sresultFragment.setQuery(query);
+        sresultFragment.setArguments(searchData);
+        Fragment fragment = sresultFragment;
+        if(fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            setTitle("Result");
+            //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            //drawer.closeDrawer(GravityCompat.START);
+        }else{
+            Log.e("MainActivity", "Error in creating fragment");
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -186,19 +222,6 @@ public class MainActivity extends AppCompatActivity{
         searchView.setQueryHint("Search...");
         return true;
     }
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // if clicked item's id is the search
-        switch (item.getItemId()){
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-    */
-
     @SuppressWarnings("StatementWithEmptyBody")
 
     @Override
@@ -206,4 +229,5 @@ public class MainActivity extends AppCompatActivity{
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
     }
+
 }
