@@ -35,6 +35,20 @@ enum ModuleSemester {
         }
     }
 
+    public ModuleSemester toEnum(String string)
+    {
+        switch (string)
+        {
+            case "Whole Year":
+                return WHOLE_YEAR;
+            case "Autumn":
+                return AUTUMN;
+            case "Spring":
+                return SPRING;
+            default:
+                return null;
+        }
+    }
 };
 
 public class Module implements Comparable<Module>, Serializable {
