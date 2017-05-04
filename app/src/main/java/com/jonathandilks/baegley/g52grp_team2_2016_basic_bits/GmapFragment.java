@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +28,6 @@ import java.util.List;
 public class GmapFragment extends Fragment implements OnMapReadyCallback {
     static final LatLng CSbuilding = new LatLng(52.9533, -1.18724);
 
-    private ArrayAdapter<CharSequence> adapter;
     private String roomNumberToFocus = null;
     private Marker roomMarker;
 
@@ -98,8 +96,6 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.mapfragment, container, false);
-        adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(), R.array.map_types, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         return rootView;
     }
