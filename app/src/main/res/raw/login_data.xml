@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:information="http://www.basicbits.info/user-information#"
+		xmlns:v="http://www.w3.org/2001/vcard-rdf/3.0#">
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/HermioneGranger/">
+			<information:username>jkrhg</information:username>
+			<information:password>hermione</information:password>
+			<information:role>student</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/HarryPotter/">
+			<information:username>jkrhp</information:username>
+			<information:password>harry</information:password>
+			<information:role>student</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/RonaldWeasley/">
+			<information:username>jkrrw</information:username>
+			<information:password>ron</information:password>
+			<information:role>student</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/LunaLovegood/">
+			<information:username>jkrll</information:username>
+			<information:password>luna</information:password>
+			<information:role>student</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/DracoMalfoy/">
+			<information:username>jkrdm</information:username>
+			<information:password>draco</information:password>
+			<information:role>student</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/LordVoldemort/">
+			<information:username>jkrlv</information:username>
+			<information:password>voldemort</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/AlbusDumbledore/">
+			<information:username>jkrad</information:username>
+			<information:password>dumbledore</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/RubeusHagrid/">
+			<information:username>jkrrh</information:username>
+			<information:password>hagrid</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/GilderoyLockhart/">
+			<information:username>jkrgl</information:username>
+			<information:password>lockhart</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/RemusLupin/">
+			<information:username>jkrrl</information:username>
+			<information:password>lupin</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/MinervaMcgonagall/">
+			<information:username>jkrmm</information:username>
+			<information:password>mcgonagall</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/SeverusSnape/">
+			<information:username>jkrss</information:username>
+			<information:password>snape</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/DoloresUmbridge/">
+			<information:username>jkrdu</information:username>
+			<information:password>umbridge</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/SybillTrelawney/">
+			<information:username>jkrst</information:username>
+			<information:password>trelawney</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/SiriusBlack/">
+			<information:username>jkrsb</information:username>
+			<information:password>black</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/ArgusFilch/">
+			<information:username>jkraf</information:username>
+			<information:password>filch</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/NearlyHeadlessNick/">
+			<information:username>jkrnhn</information:username>
+			<information:password>nick</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/QuirinusQuirrell/">
+			<information:username>jkrqq</information:username>
+			<information:password>quirrell</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/HoraceSlughorn/">
+			<information:username>jkrhs</information:username>
+			<information:password>slughorn</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/PoppyPomfrey/">
+			<information:username>jkrpp</information:username>
+			<information:password>pomfrey</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/AlastorMoody/">
+			<information:username>jkram</information:username>
+			<information:password>vmoody</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/PomonaSprout/">
+			<information:username>jkrps</information:username>
+			<information:password>sprout</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://www.basicbits.info/login/FiliusFlitwick/">
+			<information:username>jkrff</information:username>
+			<information:password>flitwick</information:password>
+			<information:role>staff</information:role>
+		</rdf:Description>
+	
+	</rdf:RDF>
