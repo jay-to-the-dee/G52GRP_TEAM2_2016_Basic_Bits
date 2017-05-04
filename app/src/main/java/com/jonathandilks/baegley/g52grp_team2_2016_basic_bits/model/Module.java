@@ -2,6 +2,7 @@ package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -36,7 +37,7 @@ enum ModuleSemester {
 
 };
 
-public class Module implements Comparable<Module> {
+public class Module implements Comparable<Module>, Serializable {
     private String moduleCode;
     private String moduleName;
     private ModuleSemester moduleSemester;

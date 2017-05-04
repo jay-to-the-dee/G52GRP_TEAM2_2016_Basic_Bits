@@ -11,6 +11,8 @@
 				<v:Given>Hermione</v:Given>
 			</v:N>
 			<v:email>jkrhg@nottingham.ac.uk</v:email>
+			<information:username>jkrhg</information:username>
+			<information:tutor>jkrrl</information:tutor>
 			<information:id>5210989</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
@@ -22,6 +24,8 @@
 				<v:Given>Harry</v:Given>
 			</v:N>
 			<v:email>jkrhp@nottingham.ac.uk</v:email>
+			<information:username>jkrhp</information:username>
+			<information:tutor>jkrrh</information:tutor>
 			<information:id>5209392</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
@@ -33,6 +37,8 @@
 				<v:Given>Ronald</v:Given>
 			</v:N>
 			<v:email>jkrrw@nottingham.ac.uk</v:email>
+			<information:username>jkrrw</information:username>
+			<information:tutor>jkrrl</information:tutor>
 			<information:id>5215639</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
@@ -44,6 +50,8 @@
 				<v:Given>Luna</v:Given>
 			</v:N>
 			<v:email>jkrll@nottingham.ac.uk</v:email>
+			<information:username>jkrll</information:username>
+			<information:tutor>jkrss</information:tutor>
 			<information:id>5233011</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
@@ -55,6 +63,8 @@
 				<v:Given>Draco</v:Given>
 			</v:N>
 			<v:email>jkrdm@nottingham.ac.uk</v:email>
+			<information:username>jkrdm</information:username>
+			<information:tutor>jkrmm</information:tutor>
 			<information:id>5290210</information:id>
 			<information:department>Computer Science</information:department>
 		</rdf:Description>
