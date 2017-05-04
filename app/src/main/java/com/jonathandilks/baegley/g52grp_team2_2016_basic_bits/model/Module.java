@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import static com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.ModuleSemester.*;
+
 enum ModuleSemester {
     WHOLE_YEAR(1), AUTUMN(2), SPRING(3);
     private int order;
@@ -16,7 +18,7 @@ enum ModuleSemester {
     public int getOrder() {
         return order;
     }
-/*
+
     public String toString()
     {
         switch (this.order)
@@ -31,7 +33,7 @@ enum ModuleSemester {
                 return "Unknown Semester";
         }
     }
-    */
+
 };
 
 public class Module implements Comparable<Module> {
