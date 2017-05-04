@@ -66,7 +66,8 @@ public class Module implements Comparable<Module>, Serializable {
 
         enrolled = new ConcurrentSkipListSet<>();
         lecturers = new ConcurrentSkipListSet<>();
-        lecturers.add(lecturer);
+        //lecturers.add(lecturer);
+        this.addLecturers(lecturer);
     }
 
     @Override
