@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">UoN Verzeichnis</string>
     <string name="git_name">G52GRP_MANNSCHAFT2_2016_Einfach_Bits</string>
-    <string name="hello_there_label">Hallöchen,</string>
     <string name="prompt_password">Passwort (freiwellig)</string>
     <string name="title_activity_login">Einloggen</string>
     <string name="error_invalid_password">Dieses Passwort ist zu klein</string>
@@ -15,7 +15,6 @@
     <string name="action_settings">Einstellungen</string>
     <string name="navigation_drawer_close">Schließen Sie die Navigationsschublade</string>
     <string name="navigation_drawer_open">Öffnen Sie die Navigationsschublade</string>
-    <string name="title_activity_main3">UoN Verzeichnis</string>
 
     <string-array name="navigation_drawer_items_array">
         <item>Profil</item>
@@ -32,4 +31,10 @@
         <item>Satellit</item>
         <item>Gelände</item>
     </string-array>
+    <string name="search_title">Suchen</string>
+    <string name="search_hint">Tipp</string>
+    <string name="navigation_profile">Profil</string>
+    <string name="navigation_map">Plan</string>
+    <string name="navigation_home">Heimat</string>
+    <string name="navigation_about">Über</string>
 </resources>
