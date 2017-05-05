@@ -10,6 +10,9 @@
             android:id="@+id/nav_profile_fragment"
             android:title="@string/navigation_profile" />
         <item
+            android:id="@+id/nav_tutor_profile"
+            android:title="@string/navigation_tutor" />
+        <item
             android:id="@+id/nav_map_fragment"
             android:title="@string/navigation_map" />
         <item

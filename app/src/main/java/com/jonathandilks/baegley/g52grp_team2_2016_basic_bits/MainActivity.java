@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,11 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
+import android.view.ViewGroup;
 
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Person;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Staff;
+import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Student;
 
 import java.io.InputStream;
 
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity
 
     private ProfileFragment profileFragment;
     private HomeFragment homeFragment;
-    private CastleFragment castleFragment;
     private GmapFragment gmapFragment;
     private SearchresultsFragment sresultFragment;
     private AboutFragment aboutFragment;
@@ -49,11 +49,15 @@ public class MainActivity extends AppCompatActivity
     public MainActivity() {
         //Initialise our fragments
         profileFragment = new ProfileFragment();
-        castleFragment = new CastleFragment();
         homeFragment = new HomeFragment();
         gmapFragment = new GmapFragment();
         sresultFragment = new SearchresultsFragment();
         aboutFragment = new AboutFragment();
+
+        // Initialise model
+        data = new Data();
+        bundleData = new Bundle();
+        searchData = new Bundle();
     }
 
     @Override
@@ -81,19 +85,15 @@ public class MainActivity extends AppCompatActivity
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
 
-        //Initialise model
-        data = new Data();
         Parser parser = new Parser(data);
         parser.doParse(rdfStudentStream, rdfStaffStream);
 
-        bundleData = new Bundle();
-        searchData = new Bundle();
 
-        bundleData.putSerializable("data", data);
 
+        bundleData.putSerializable("person", data);
         //Pass in data
+        profileFragment.setSerial("person");
         profileFragment.setArguments(bundleData);
-        castleFragment.setArguments(bundleData);
 
         //getSupportFragmentManager().beginTransaction().add(R.id.flContent, homeFragment).commit();
 
@@ -101,9 +101,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onItemSelected(Person p){
-        if(profileFragment != null) {
+        if(p.getClass() == Staff.class){
+            profileFragment.setSerial("sstaff");
+            profileFragment.updatePerson(p);
             switchFragment(profileFragment, "Profile");
-            profileFragment.updateProfile(p);
+        }else if(p.getClass() == Student.class){
+            profileFragment.setSerial("sstudent");
+            profileFragment.updatePerson(p);
+            switchFragment(profileFragment, "Profile");
         }
     }
 
@@ -134,6 +139,21 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         switch (item.getItemId()){
             case R.id.nav_profile_fragment:
+                if(!profileFragment.getSerial().equalsIgnoreCase("student")) {
+                    profileFragment.setSerial("Student");
+                    if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof ProfileFragment) {
+                        profileFragment.updateProfile();
+                    }
+                }
+                fragment = profileFragment;
+                break;
+            case R.id.nav_tutor_profile:
+                if(!profileFragment.getSerial().equalsIgnoreCase("tutor")) {
+                    profileFragment.setSerial("Tutor");
+                    if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof ProfileFragment) {
+                        profileFragment.updateProfile();
+                    }
+                }
                 fragment = profileFragment;
                 break;
             case R.id.nav_home_fragment:
