@@ -1,6 +1,6 @@
 # G52GRP Team 2 (Basic Bits)
 ## UoN Directory
-[![](http://bit.ly/2pVtNwl "UoN Directory Logo")]
+![](http://bit.ly/2pVtNwl)
 ## Contributors
 * Vappu Koskela     (psyvk@nottingham.ac.uk)
 * Jonathan Dilks    (psyjd3@nottingham.ac.uk)
