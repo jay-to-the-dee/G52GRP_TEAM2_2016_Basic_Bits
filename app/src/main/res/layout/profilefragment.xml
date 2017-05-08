@@ -47,7 +47,7 @@
       android:layout_alignTop="@+id/User"
       android:layout_marginTop="20dp"
       android:clickable="true"
-      android:onClick="onOfficeClick" />
+      android:onClick="onClick" />
     <TextView
       android:id="@+id/Phone"
       android:layout_width="match_parent"

@@ -1,8 +1,11 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +46,24 @@ public class ProfileFragment extends Fragment {
     private Student student;
     private Staff staff;
 
+    OnOfficeClickListener mCallback;
+
+
+    public interface OnOfficeClickListener {
+        void onOfficeClick(String officeAddress);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnOfficeClickListener){
+            mCallback = (OnOfficeClickListener) context;
+        }else{
+            throw new ClassCastException(context.toString()
+                    + " must implement OnOfficeClickListener");
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -140,7 +161,7 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) rootView.findViewById(R.id.Name);
         TextView email = (TextView) rootView.findViewById(R.id.Email);
         TextView username = (TextView) rootView.findViewById(R.id.User);
-        TextView office = (TextView) rootView.findViewById(R.id.Office);
+        final TextView office = (TextView) rootView.findViewById(R.id.Office);
         TextView phone = (TextView) rootView.findViewById(R.id.Phone);
 
         if(person.getClass() == Student.class) {
@@ -155,6 +176,12 @@ public class ProfileFragment extends Fragment {
             email.setText(staff.getEmail());
             username.setText(staff.getUserName());
             office.setText(staff.getOffice());
+            office.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallback.onOfficeClick(office.getText().toString());
+                }
+            });
             phone.setText(staff.getPhoneNo());
         }
     }

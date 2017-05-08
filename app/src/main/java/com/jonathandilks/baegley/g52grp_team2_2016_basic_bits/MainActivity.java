@@ -29,7 +29,8 @@ import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Student;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity
-        implements SearchresultsFragment.OnProfileSelectedListener {
+        implements SearchresultsFragment.OnProfileSelectedListener,
+                   ProfileFragment.OnOfficeClickListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -228,7 +229,14 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(mTitle);
     }
 
-    public void onOfficeClick(View view) {
-    //TODO: gmapFragment.setRoomNumberToFocus(officeString);
+    public void onOfficeClick(String officeAddress) {
+        gmapFragment.setRoomNumberToFocus(officeAddress);
+        if(gmapFragment != null) {
+            switchFragment(gmapFragment, "Map");
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }else{
+            Log.e("MainActivity", "Error in creating fragment");
+        }
     }
 }
