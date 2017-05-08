@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/uonlogo"
         android:layout_marginTop="77dp"
-        android:layout_below="@+id/email_login_form"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
