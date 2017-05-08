@@ -59,14 +59,30 @@ public class Module implements Comparable<Module>, Serializable {
     private SortedSet<Student> enrolled;
     private SortedSet<Staff> lecturers;
 
-    public Module(String moduleCode, String moduleName, ModuleSemester moduleSemester, Staff lecturer) {
+    public Module(String moduleCode, String moduleName, String moduleSemester, Staff lecturer) {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
-        this.moduleSemester = moduleSemester;
+
+        //ModuleSemester enumSemester = toEnum(moduleSemester); GET RID OF????
+
+        ModuleSemester enumSemester = null;
+
+        switch (moduleSemester){
+            case "Whole Year":
+                enumSemester = WHOLE_YEAR;
+            case "Autumn":
+                enumSemester = AUTUMN;
+            case "Spring":
+                enumSemester = SPRING;
+            default:
+                enumSemester = null;
+        }
+
+        this.moduleSemester = enumSemester;
 
         enrolled = new ConcurrentSkipListSet<>();
         lecturers = new ConcurrentSkipListSet<>();
-        //lecturers.add(lecturer);
+
         this.addLecturers(lecturer);
     }
 
