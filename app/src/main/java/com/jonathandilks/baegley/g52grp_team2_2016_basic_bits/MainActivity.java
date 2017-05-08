@@ -86,9 +86,10 @@ public class MainActivity extends AppCompatActivity
 
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
+        InputStream rdfModuleStream = getResources().openRawResource(R.raw.module_data);
 
         Parser parser = new Parser(data);
-        parser.doParse(rdfStudentStream, rdfStaffStream);
+        parser.doParse(rdfStudentStream, rdfStaffStream, rdfModuleStream);
 
 
 
