@@ -32,8 +32,8 @@ public class Parser {
 
     public void doParse (InputStream isStudent, InputStream isStaff, InputStream isModule) {
 
-        parseStudents(isStudent);
         parseStaff(isStaff);
+        parseStudents(isStudent);
         parseModule(isModule);
 
         Student firstStudent = rdfData.getStudents().first();
@@ -107,15 +107,19 @@ public class Parser {
 
                 String rdfFullName = getValue("v:FN", eItem);
                 String rdfEmail = getValue("v:email", eItem);
+                String rdfUsername = getValue("information:username", eItem);
                 String rdfPhone = getValue("v:tel", eItem);
                 String rdfOffice = getValue("information:office", eItem);
+                String rdfURL = getValue("information:url", eItem);
 
                 Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
                 Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
+                Log.d(TAG, "WHALE " + i + "    USERNAME: " + rdfUsername);
                 Log.d(TAG, "WHALE " + i + "       PHONE: " + rdfPhone);
                 Log.d(TAG, "WHALE " + i + "      OFFICE: " + rdfOffice);
+                Log.d(TAG, "WHALE " + i + "         URL: " + rdfURL);
 
-                Staff staff = new Staff(rdfFullName, rdfEmail, "", rdfPhone, rdfOffice, "");
+                Staff staff = new Staff(rdfFullName, rdfEmail, rdfUsername, rdfPhone, rdfOffice, rdfURL);
                 Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + staff.toString());
 
                 int setSize = rdfData.addStaff(staff);
