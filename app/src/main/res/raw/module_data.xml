@@ -24,6 +24,7 @@
 			<information:name>Concurrent Spell Casting</information:name>
 			<information:semester>Autumn</information:semester>
 			<information:lecturer>jkrsb</information:lecturer>
+			<information:lecturer>jkrqq</information:lecturer>
 		</rdf:Description>
 
 		<rdf:Description rdf:about="http://www.basicbits.info/module/MGA/">
