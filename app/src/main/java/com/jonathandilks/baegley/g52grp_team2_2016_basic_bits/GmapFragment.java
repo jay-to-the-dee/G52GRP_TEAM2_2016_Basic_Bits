@@ -164,7 +164,6 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
                     if (activeLevelIndex != roomLevelIndex) {
                         roomMarker.remove();
-                        roomMarker = null;
                     }
                 }
             }
