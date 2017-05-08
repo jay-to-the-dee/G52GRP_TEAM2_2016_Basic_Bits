@@ -28,8 +28,10 @@ public class Data implements Serializable {
         return staff.size();
     }
 
-    public void addModule(Module m) {
+    // returns new size of set for debugging
+    public int addModule(Module m) {
         modules.add(m);
+        return modules.size();
     }
 
     public SortedSet<Staff> getStaff() {

@@ -70,12 +70,16 @@ public class Module implements Comparable<Module>, Serializable {
         switch (moduleSemester){
             case "Whole Year":
                 enumSemester = WHOLE_YEAR;
+                break;
             case "Autumn":
                 enumSemester = AUTUMN;
+                break;
             case "Spring":
                 enumSemester = SPRING;
+                break;
             default:
                 enumSemester = null;
+                break;
         }
 
         this.moduleSemester = enumSemester;
@@ -91,6 +95,7 @@ public class Module implements Comparable<Module>, Serializable {
         return "Module{" +
                 "moduleCode='" + moduleCode + '\'' +
                 ", moduleName='" + moduleName + '\'' +
+                ", moduleSemester='" + this.moduleSemester.toString() + '\'' +
                 '}';
     }
 

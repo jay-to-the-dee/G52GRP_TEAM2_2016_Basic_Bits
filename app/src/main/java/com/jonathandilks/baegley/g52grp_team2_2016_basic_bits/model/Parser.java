@@ -30,16 +30,20 @@ public class Parser {
         //staffFactory = DocumentBuilderFactory.newInstance();
     }
 
-    public void doParse (InputStream isStudent, InputStream isStaff) {
+    public void doParse (InputStream isStudent, InputStream isStaff, InputStream isModule) {
 
         parseStudents(isStudent);
         parseStaff(isStaff);
+        parseModule(isModule);
 
-        //Student firstStudent = rdfData.getStudents().first();
-        //Log.d(TAG, "WHALE first student: " + firstStudent.toString());
+        Student firstStudent = rdfData.getStudents().first();
+        Log.d(TAG, "WHALE first student: " + firstStudent.toString());
 
-        //Staff firstStaff = rdfData.getStaff().first();
-        //Log.d(TAG, "WHALE first staff:   " + firstStaff.toString());
+        Staff firstStaff = rdfData.getStaff().first();
+        Log.d(TAG, "WHALE first staff:   " + firstStaff.toString());
+
+        Module firstModule = rdfData.getModules().first();
+        Log.d(TAG, "WHALE first module: " + firstModule.toString());
     }
 
     private void parseStudents(InputStream is) {
@@ -118,6 +122,47 @@ public class Parser {
                 Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parseModule(InputStream is) {
+        BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+        // BUILD EMPTY STAFF OBJECT BECAUSE NOT DEALING WITH LECTURERS YET
+        Staff emptyStaff = new Staff("","","","","","");
+
+        Log.d (TAG, "WHALE modules: ");
+
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(is);
+
+            Element element = doc.getDocumentElement();
+            NodeList nList = doc.getElementsByTagName("rdf:Description");
+
+            // loop through 'description' elements (nList)
+            // print details of each module for debugging
+            // create and add new Module to module SortedSet
+
+            Log.d (TAG, "WHALE nlist length: " + nList.getLength());
+
+            for (int i=0 ; i<nList.getLength() ; i++) {
+                Node node = nList.item(i);
+                Element eItem = (Element)node;
+
+                String rdfID = getValue("information:id", eItem);
+                String rdfName = getValue("information:name", eItem);
+                String rdfSemester = getValue("information:semester", eItem);
+
+                Module module = new Module(rdfID, rdfName, rdfSemester, emptyStaff);
+                Log.d(TAG, "WHALE " + i + " PRINT OBJ: " + module.toString());
+
+                int setSize = rdfData.addModule(module);
+                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
