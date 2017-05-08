@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import java.util.SortedSet;
+
 import static android.content.ContentValues.TAG;
 
 public class Parser {
@@ -36,14 +38,45 @@ public class Parser {
         parseStudents(isStudent);
         parseModule(isModule);
 
-        Student firstStudent = rdfData.getStudents().first();
-        Log.d(TAG, "WHALE first student: " + firstStudent.toString());
+        testOutput();
+    }
 
+    // contains testing output only, can be deleted
+    private void testOutput() {
+        // check first student has correct values
+        Student firstStudent = rdfData.getStudents().first();
+        Log.d(TAG, "WHALE first student      : " + firstStudent.toString());
+        Log.d(TAG, "WHALE first student tutor: " + firstStudent.getTutor().toString());
+
+        // check first staff has correct values
         Staff firstStaff = rdfData.getStaff().first();
         Log.d(TAG, "WHALE first staff:   " + firstStaff.toString());
 
+        // check first module has correct values
         Module firstModule = rdfData.getModules().first();
         Log.d(TAG, "WHALE first module: " + firstModule.toString());
+
+        // check students are added to staff tutee lists correctly
+        Staff lupin = rdfData.findStaff("jkrrl");
+        for (Student s : lupin.getTutees()) {
+            Log.d(TAG, "WHALE   LUPIN TUTEES:   " + s.toString());
+        }
+
+        Staff hagrid = rdfData.findStaff("jkrrh");
+        for (Student s : hagrid.getTutees()) {
+            Log.d(TAG, "WHALE   HAGRID TUTEES:   " + s.toString());
+        }
+
+        Staff mcgonagall = rdfData.findStaff("jkrmm");
+        for (Student s : mcgonagall.getTutees()) {
+            Log.d(TAG, "WHALE   MCGONAGALL TUTEES:   " + s.toString());
+        }
+
+        Staff snape = rdfData.findStaff("jkrss");
+        for (Student s : snape.getTutees()) {
+            Log.d(TAG, "WHALE   SNAPE TUTEES:   " + s.toString());
+        }
+
     }
 
     private void parseStudents(InputStream is) {
@@ -70,15 +103,22 @@ public class Parser {
 
                 String rdfFullName = getValue("v:FN", eItem);
                 String rdfEmail = getValue("v:email", eItem);
+                String rdfUsername = getValue("information:username", eItem);
+                String rdfTutor = getValue("information:tutor", eItem);
 
-                Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
-                Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
+                //Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
+                //Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
+                //Log.d(TAG, "WHALE " + i + "    USERNAME: " + rdfUsername);
+                //Log.d(TAG, "WHALE " + i + "       TUTOR: " + rdfTutor);
 
-                Student student = new Student(rdfFullName, rdfEmail, "", emptyStaff);
-                Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + student.toString());
+                Staff tutor = rdfData.findStaff(rdfTutor);
+
+                Student student = new Student(rdfFullName, rdfEmail, rdfUsername, tutor);
+                //Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + student.toString());
+                //Log.d(TAG, "WHALE " + i + "   TUTOR STR: " + student.getTutor().toString());
 
                 int setSize = rdfData.addStudent(student);
-                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
+                //Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
             }
 
         } catch (Exception e) {
@@ -112,18 +152,18 @@ public class Parser {
                 String rdfOffice = getValue("information:office", eItem);
                 String rdfURL = getValue("information:url", eItem);
 
-                Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
-                Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
-                Log.d(TAG, "WHALE " + i + "    USERNAME: " + rdfUsername);
-                Log.d(TAG, "WHALE " + i + "       PHONE: " + rdfPhone);
-                Log.d(TAG, "WHALE " + i + "      OFFICE: " + rdfOffice);
-                Log.d(TAG, "WHALE " + i + "         URL: " + rdfURL);
+                //Log.d(TAG, "WHALE " + i + "   FULL NAME: " + rdfFullName);
+                //Log.d(TAG, "WHALE " + i + "       EMAIL: " + rdfEmail);
+                //Log.d(TAG, "WHALE " + i + "    USERNAME: " + rdfUsername);
+                //Log.d(TAG, "WHALE " + i + "       PHONE: " + rdfPhone);
+                //Log.d(TAG, "WHALE " + i + "      OFFICE: " + rdfOffice);
+                //Log.d(TAG, "WHALE " + i + "         URL: " + rdfURL);
 
                 Staff staff = new Staff(rdfFullName, rdfEmail, rdfUsername, rdfPhone, rdfOffice, rdfURL);
-                Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + staff.toString());
+                //Log.d(TAG, "WHALE " + i + "   PRINT OBJ: " + staff.toString());
 
                 int setSize = rdfData.addStaff(staff);
-                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
+                //Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
             }
 
         } catch (Exception e) {
@@ -181,5 +221,6 @@ public class Parser {
         Node node = nodeList.item(0);
         return node.getNodeValue();
     }
+
 
 }

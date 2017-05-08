@@ -65,4 +65,15 @@ public class Data implements Serializable {
         }
         return results;
     }
+
+    public Staff findStaff(String searchString)
+    {
+        for (Staff s : staff) {
+            if (s.getUserName().contains(searchString)) {
+                return s;
+            }
+        }
+
+        return null;
+    }
 }
