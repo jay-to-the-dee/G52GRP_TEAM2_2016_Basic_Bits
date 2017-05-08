@@ -35,7 +35,7 @@ enum ModuleSemester {
         }
     }
 
-    public ModuleSemester toEnum(String string)
+    public static ModuleSemester toEnum(String string)
     {
         switch (string)
         {
@@ -63,26 +63,7 @@ public class Module implements Comparable<Module>, Serializable {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
 
-        //ModuleSemester enumSemester = toEnum(moduleSemester); GET RID OF????
-
-        ModuleSemester enumSemester = null;
-
-        switch (moduleSemester){
-            case "Whole Year":
-                enumSemester = WHOLE_YEAR;
-                break;
-            case "Autumn":
-                enumSemester = AUTUMN;
-                break;
-            case "Spring":
-                enumSemester = SPRING;
-                break;
-            default:
-                enumSemester = null;
-                break;
-        }
-
-        this.moduleSemester = enumSemester;
+        this.moduleSemester = ModuleSemester.toEnum(moduleSemester);
 
         enrolled = new ConcurrentSkipListSet<>();
         lecturers = new ConcurrentSkipListSet<>();
