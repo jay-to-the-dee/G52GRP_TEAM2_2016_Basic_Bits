@@ -43,10 +43,10 @@ public class DummyData {
 
         /* Make modules*/
         modules = new ConcurrentSkipListSet<>();
-        Module g51fun = new Module("G51FUN", "Functional Magical Paradigms", "Spring", hagrid);
-        Module g51wiz = new Module("G51WIZ", "Intoduction to Wizardry", "Autumn", dumbledore);
-        Module g52grp = new Module("G52GRP", "Ghastly Ridiculous Project", "Whole Year", umbridge);
-        Module g51bad = new Module("G51BAD", "Paradigms of Evil", "Spring", umbridge);
+        Module g51fun = new Module("G51FUN", "Functional Magical Paradigms", "Spring");
+        Module g51wiz = new Module("G51WIZ", "Intoduction to Wizardry", "Autumn");
+        Module g52grp = new Module("G52GRP", "Ghastly Ridiculous Project", "Whole Year");
+        Module g51bad = new Module("G51BAD", "Paradigms of Evil", "Spring");
 
 
         /*Now give modules students */

@@ -43,7 +43,7 @@ public class Parser {
 
     // contains testing output only, can be deleted
     private void testOutput() {
-        // check first student has correct values
+        /*// check first student has correct values
         Student firstStudent = rdfData.getStudents().first();
         Log.d(TAG, "WHALE first student      : " + firstStudent.toString());
         Log.d(TAG, "WHALE first student tutor: " + firstStudent.getTutor().toString());
@@ -75,17 +75,25 @@ public class Parser {
         Staff snape = rdfData.findStaff("jkrss");
         for (Student s : snape.getTutees()) {
             Log.d(TAG, "WHALE   SNAPE TUTEES:   " + s.toString());
+        }*/
+
+        for (Staff s : rdfData.getStaff()) {
+            Log.d(TAG, "WHALE   " + s.getName() + " MODULES:");
+
+            for (Module m : s.getModulesTaught()) {
+                Log.d(TAG, "WHALE    " + m.toString());
+            }
+
+            Log.d(TAG, "WHALE");
         }
 
     }
 
     private void parseStudents(InputStream is) {
-        // BUILD EMPTY STAFF OBJECT BECAUSE TUTOR ISN'T ADDED INTO XML YET
-        Staff emptyStaff = new Staff("","","","","","");
 
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
 
-        Log.d(TAG, "WHALE student:");
+        //Log.d(TAG, "WHALE student:");
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -129,7 +137,7 @@ public class Parser {
     private void parseStaff(InputStream is) {
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
 
-        Log.d(TAG, "WHALE staff:");
+        //Log.d(TAG, "WHALE staff:");
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -174,10 +182,7 @@ public class Parser {
     private void parseModule(InputStream is) {
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
 
-        // BUILD EMPTY STAFF OBJECT BECAUSE NOT DEALING WITH LECTURERS YET
-        Staff emptyStaff = new Staff("","","","","","");
-
-        Log.d (TAG, "WHALE modules: ");
+        //Log.d (TAG, "WHALE modules: ");
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -190,7 +195,7 @@ public class Parser {
             // print details of each module for debugging
             // create and add new Module to module SortedSet
 
-            Log.d (TAG, "WHALE nlist length: " + nList.getLength());
+            //Log.d (TAG, "WHALE nlist length: " + nList.getLength());
 
             for (int i=0 ; i<nList.getLength() ; i++) {
                 Node node = nList.item(i);
@@ -200,11 +205,30 @@ public class Parser {
                 String rdfName = getValue("information:name", eItem);
                 String rdfSemester = getValue("information:semester", eItem);
 
-                Module module = new Module(rdfID, rdfName, rdfSemester, emptyStaff);
-                Log.d(TAG, "WHALE " + i + " PRINT OBJ: " + module.toString());
+                Module module = new Module(rdfID, rdfName, rdfSemester);
+                //Log.d(TAG, "WHALE " + i + " PRINT OBJ: " + module.toString());
 
+                // creates nodelist of all elements with particular tag name
+                // each lecturer will be a different element
+                NodeList lecturerNodeList = eItem.getElementsByTagName("information:lecturer");
+                //Log.d(TAG, "WHALE   nodelist length: " + lecturerNodeList.getLength());
+
+                for (int j=0 ; j<lecturerNodeList.getLength() ; j++) {
+                    // for each lecturer in nodeList, get the value of the first child node (the lectrer's username)
+                    String lecturerUsername = lecturerNodeList.item(j).getChildNodes().item(0).getNodeValue();
+
+                    // find lecturer in staff set and add to lecturers set in module
+                    module.addLecturers(rdfData.findStaff(lecturerUsername));
+                }
+
+                // output for debugging
+                /*for (Staff s : module.getLecturers()) {
+                    Log.d(TAG, "WHALE   LECTURERS:   " + s.toString());
+                }*/
+
+                // output set size for debugging
                 int setSize = rdfData.addModule(module);
-                Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
+                //Log.d(TAG, "WHALE " + i + "    SET SIZE: " + setSize);
 
             }
         } catch (Exception e) {
@@ -215,6 +239,7 @@ public class Parser {
     // takes tag name and an Element (node in the graph)
     // builds a NodeList: getElementsByTagName retrieves elements with the required tag
     //                    build list of child nodes of the first item in getElementsByTagName
+    //                    (there should only ever be one element with each tag if this function is called)
     // returns the value of the first element of the above NodeList
     private String getValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();

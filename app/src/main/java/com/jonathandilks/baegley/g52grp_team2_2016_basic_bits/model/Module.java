@@ -59,7 +59,7 @@ public class Module implements Comparable<Module>, Serializable {
     private SortedSet<Student> enrolled;
     private SortedSet<Staff> lecturers;
 
-    public Module(String moduleCode, String moduleName, String moduleSemester, Staff lecturer) {
+    public Module(String moduleCode, String moduleName, String moduleSemester) {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
 
@@ -67,8 +67,6 @@ public class Module implements Comparable<Module>, Serializable {
 
         enrolled = new ConcurrentSkipListSet<>();
         lecturers = new ConcurrentSkipListSet<>();
-
-        this.addLecturers(lecturer);
     }
 
     @Override
