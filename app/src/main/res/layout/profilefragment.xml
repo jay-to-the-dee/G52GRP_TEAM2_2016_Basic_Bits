@@ -16,7 +16,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/border_image"
-            app:srcCompat="@mipmap/teddybear" />
+            app:srcCompat="@mipmap/uonicon" />
     </LinearLayout>
     <TextView
         android:id="@+id/Name"
