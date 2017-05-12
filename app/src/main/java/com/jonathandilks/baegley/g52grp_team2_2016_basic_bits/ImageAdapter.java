@@ -72,6 +72,6 @@ public class ImageAdapter extends BaseAdapter {
 
     // reference to our images
     private Integer[] mThumbIds = {
-            R.mipmap.uonicon
+            R.mipmap.iconoutline
     };
 }
