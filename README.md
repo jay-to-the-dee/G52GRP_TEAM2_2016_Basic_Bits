@@ -1,6 +1,6 @@
 # G52GRP Team 2 (Basic Bits)
 ## UoN Directory
-![](https://lh5.googleusercontent.com/bIx5SIn80KU53uLUheT8SUMjB0FSzYyYxQgNVNg1hvwHCseu0_V5uoT8Vb1eYmpwjJd7WHB2VdTSB5M=w1280-h894)
+![](http://i.imgur.com/NtT9gif.png)
 ## Contributors
 * Vappu Koskela     (psyvk@nottingham.ac.uk)
 * Jonathan Dilks    (psyjd3@nottingham.ac.uk)
