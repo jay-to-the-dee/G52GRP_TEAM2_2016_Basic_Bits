@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Parser;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private CharSequence mTitle;
+    private TextView useremail;
 
     private Data data;
     private Bundle bundleData;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity
 
         mTitle = getTitle();
 
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -84,6 +87,9 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
 
+        View header = navigationView.getHeaderView(0);
+        useremail = (TextView) header.findViewById(R.id.userEmail);
+
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
         InputStream rdfModuleStream = getResources().openRawResource(R.raw.module_data);
@@ -92,13 +98,14 @@ public class MainActivity extends AppCompatActivity
         parser.doParse(rdfStudentStream, rdfStaffStream, rdfModuleStream);
 
 
+        String username = (String) getIntent().getStringExtra("user");
+        useremail.setText(username);
 
         bundleData.putSerializable("person", data);
         //Pass in data
         profileFragment.setSerial("person");
         profileFragment.setArguments(bundleData);
-
-        //getSupportFragmentManager().beginTransaction().add(R.id.flContent, homeFragment).commit();
+        profileFragment.setUserName(username);
 
         handleIntent(getIntent());
     }
@@ -133,10 +140,13 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.flContent, fragment).commit();
             setTitle(title);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         }else{
             Log.e("MainActivity", "Error in creating fragment");
         }
     }
+    //search result -> profile ->map ->tutor ->map, didn't crash,   tutor->map->search result->profile ->map, crash
 
     private void selectDrawerItem(MenuItem item) {
         Fragment fragment = null;
@@ -173,8 +183,10 @@ public class MainActivity extends AppCompatActivity
         if(fragment != null) {
             item.setChecked(true);
             switchFragment(fragment, item.getTitle().toString());
+            /*
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
+            */
         }else{
             Log.e("MainActivity", "Error in creating fragment");
         }
@@ -234,8 +246,6 @@ public class MainActivity extends AppCompatActivity
         gmapFragment.setRoomNumberToFocus(officeAddress);
         if(gmapFragment != null) {
             switchFragment(gmapFragment, "Map");
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
         }else{
             Log.e("MainActivity", "Error in creating fragment");
         }
