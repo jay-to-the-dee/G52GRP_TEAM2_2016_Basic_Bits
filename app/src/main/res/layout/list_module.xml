@@ -8,8 +8,9 @@ android:orientation="vertical" >
     android:id="@+id/heading"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="35sp"
-    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:paddingStart="35sp"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="@color/textDark"
     android:textStyle="bold" />
 
 </LinearLayout>
