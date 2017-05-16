@@ -3,9 +3,8 @@ package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ public class ProfileFragment extends Fragment {
     private Data data;
     private ExpandableListView moduleList;
     private ExpandableListView optionalList;
-    private LinearLayout optionalContent;
     private ExpandableListAdapter listAdapter;
 
 
@@ -40,11 +38,15 @@ public class ProfileFragment extends Fragment {
     private List<String> listoptionalHeader;
     private HashMap<String, List<String>> listoptionalHash;
 
+    public static ArrayList<TabHost.TabSpec> list = new ArrayList<TabHost.TabSpec>();
+
     private SortedSet<Module> modules;
     private String serial;
 
     private Student student;
     private Staff staff;
+    private String username;
+    private String role;
 
     OnOfficeClickListener mCallback;
 
@@ -85,7 +87,14 @@ public class ProfileFragment extends Fragment {
         moduleList = (ExpandableListView) rootView.findViewById(R.id.moduleList);
         optionalList = (ExpandableListView) rootView.findViewById(R.id.optionalList);
 
-        optionalContent = (LinearLayout) rootView.findViewById(R.id.optionalTab);
+        TabHost.TabSpec spec;
+        list.clear();
+        spec = host.newTabSpec("Module").setIndicator("Module").setContent(R.id.moduleTab);
+        list.add(spec);
+        spec = host.newTabSpec("Marks").setIndicator("Marks").setContent(R.id.optionalTab);
+        list.add(spec);
+        spec = host.newTabSpec("Tutees").setIndicator("Tutees").setContent(R.id.optionalTab);
+        list.add(spec);
 
         return rootView;
     }
@@ -95,26 +104,26 @@ public class ProfileFragment extends Fragment {
         super.onStart();
 
         if(serial.equalsIgnoreCase("student")) {
-            student = data.getStudents().last();
-            setTabTitle("Module", "Marks");
+            student = data.findStudent(username);
+            setTabTitle();
             update(student, this.getView());
             modules = student.getModulesEnrolled();
         }else if(serial.equalsIgnoreCase("tutor")) {
-            // need to be fixed
-            // student.getTutor : this staff only have tutees
-            // data.getStaff: this staff only has it's own data, no tutees
-
-            //staff = data.getStudents().last().getTutor();
-            staff = data.getStaff().first();
-            setTabTitle("Module", "Tutees");
+            staff = data.findStudent(username).getTutor();
+            setTabTitle();
+            update(staff, this.getView());
+            modules = staff.getModulesTaught();
+        }else if(serial.equalsIgnoreCase("staff")){
+            staff = data.findStaff(username);
+            setTabTitle();
             update(staff, this.getView());
             modules = staff.getModulesTaught();
         }else if(serial.equalsIgnoreCase("sstaff")){
-            setTabTitle("Module", "Tutees");
+            setTabTitle();
             update(staff, this.getView());
             modules = staff.getModulesTaught();
         }else if(serial.equalsIgnoreCase("sstudent")){
-            setTabTitle("Module", "Marks");
+            setTabTitle();
             update(student, this.getView());
             modules = student.getModulesEnrolled();
         }
@@ -135,22 +144,22 @@ public class ProfileFragment extends Fragment {
     }
     public void updateProfile(){
 
-        // need to be fixed
-        student = data.getStudents().last();
-        staff = student.getTutor();
-
-
-        if (serial.equalsIgnoreCase("tutor")) {
+        if(role.equalsIgnoreCase("student")) {
+            student = data.findStudent(username);
+            staff = student.getTutor();
+            if (serial.equalsIgnoreCase("tutor")) {
+                update(staff, this.getView());
+                modules = staff.getModulesTaught();
+            } else if (serial.equalsIgnoreCase("student")) {
+                update(student, this.getView());
+                modules = student.getModulesEnrolled();
+            }
+        }else{
+            staff= data.findStaff(username);
             update(staff, this.getView());
-            LinearLayout opTab = (LinearLayout) host.getTabWidget().getChildTabViewAt(1);
-            final TextView title = (TextView) opTab.findViewById(android.R.id.title);
-            title.setText("Tutees");
-        } else if (serial.equalsIgnoreCase("student")) {
-            update(student, this.getView());
-            LinearLayout opTab = (LinearLayout) host.getTabWidget().getChildTabViewAt(1);
-            final TextView title = (TextView) opTab.findViewById(android.R.id.title);
-            title.setText("Marks");
+            modules = staff.getModulesTaught();
         }
+        setTabTitle();
         initData();
         listAdapter = new ExpandableListAdapter(getContext(), listmoduleHeader, listmoduleHash);
         moduleList.setAdapter(listAdapter);
@@ -195,15 +204,15 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-    private void setTabTitle(String first, String second){
-        TabHost.TabSpec spec = host.newTabSpec(first);
-        spec.setContent(R.id.moduleTab);
-        spec.setIndicator(first);
-        host.addTab(spec);
-        spec = host.newTabSpec(second);
-        spec.setContent(R.id.optionalTab);
-        spec.setIndicator(second);
-        host.addTab(spec);
+    private void setTabTitle(){
+        host.clearAllTabs();
+        if(serial.equalsIgnoreCase("student")||serial.equalsIgnoreCase("sstudent")){
+            host.addTab(list.get(0));
+            host.addTab(list.get(1));
+        }else{
+            host.addTab(list.get(0));
+            host.addTab(list.get(2));
+        }
     }
 
     public void initData(){
@@ -215,7 +224,7 @@ public class ProfileFragment extends Fragment {
         int index = 0;
         for(Module module:modules)
         {
-            if(serial.equalsIgnoreCase("student")||serial.equalsIgnoreCase("sstudent")) {
+            if((serial.equalsIgnoreCase("student")||serial.equalsIgnoreCase("sstudent"))) {
                 listoptionalHeader.add(module.getModuleCode());
                 List<String> optional = new ArrayList<>();
                 optional.add("Your mark: 80");
@@ -228,7 +237,7 @@ public class ProfileFragment extends Fragment {
             listmoduleHash.put(listmoduleHeader.get(index), moduleDetails);
             index++;
         }
-        if(serial.equalsIgnoreCase("tutor")||serial.equalsIgnoreCase("sstaff")) {
+        if(serial.equalsIgnoreCase("tutor")||serial.equalsIgnoreCase("sstaff")||serial.equalsIgnoreCase("staff")) {
             index = 0;
             for(Student tutee:staff.getTutees()) {
                 listoptionalHeader.add(tutee.getName());
@@ -246,6 +255,18 @@ public class ProfileFragment extends Fragment {
     }
     public String getSerial() {
         return serial;
+    }
+    public void setUserName(String username)
+    {
+        this.username = username;
+    }
+    public void setRole(String s)
+    {
+        role = s;
+    }
+    public String getRole()
+    {
+        return role;
     }
 
     public void onSaveInstanceState(Bundle outState){
