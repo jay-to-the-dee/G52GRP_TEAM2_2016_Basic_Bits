@@ -18,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model.Data;
@@ -38,10 +37,10 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private CharSequence mTitle;
     private TextView useremail;
+    private TextView Name;
 
     private Data data;
     private Bundle bundleData;
-    private Bundle searchData;
 
     private ProfileFragment profileFragment;
     private HomeFragment homeFragment;
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         // Initialise model
         data = new Data();
         bundleData = new Bundle();
-        searchData = new Bundle();
+
     }
 
     @Override
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
         useremail = (TextView) header.findViewById(R.id.userEmail);
+        Name = (TextView) header.findViewById(R.id.userName);
 
         InputStream rdfStudentStream = getResources().openRawResource(R.raw.student_data);
         InputStream rdfStaffStream = getResources().openRawResource(R.raw.staff_data);
@@ -98,14 +98,36 @@ public class MainActivity extends AppCompatActivity
         parser.doParse(rdfStudentStream, rdfStaffStream, rdfModuleStream);
 
 
-        String username = (String) getIntent().getStringExtra("user");
-        useremail.setText(username);
+        String username = getIntent().getStringExtra("user");
+        String role = getIntent().getStringExtra("role");
+
+        String name;
+        String email;
+
+        name = data.findStudent(username).getName();
+        email = data.findStudent(username).getEmail();
+        if(role.equalsIgnoreCase("student")) {
+            name = data.findStudent(username).getName();
+            email = data.findStudent(username).getEmail();
+        }
+        else {
+            name = data.findStaff(username).getName();
+            email = data.findStaff(username).getEmail();
+            navigationView.getMenu().removeItem(R.id.nav_tutor_profile);
+        }
+
+        Name.setText(name);
+        useremail.setText(email);
+
 
         bundleData.putSerializable("person", data);
         //Pass in data
         profileFragment.setSerial("person");
+        profileFragment.setRole(role);
         profileFragment.setArguments(bundleData);
         profileFragment.setUserName(username);
+
+        sresultFragment.setArguments(bundleData);
 
         handleIntent(getIntent());
     }
@@ -133,6 +155,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
         );
+
     }
 
     private void switchFragment(Fragment fragment, String title){
@@ -152,10 +175,19 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         switch (item.getItemId()){
             case R.id.nav_profile_fragment:
-                if(!profileFragment.getSerial().equalsIgnoreCase("student")) {
-                    profileFragment.setSerial("Student");
-                    if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof ProfileFragment) {
-                        profileFragment.updateProfile();
+                if(profileFragment.getRole().equalsIgnoreCase("student")) {
+                    if (!profileFragment.getSerial().equalsIgnoreCase("student")) {
+                        profileFragment.setSerial("Student");
+                        if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof ProfileFragment) {
+                            profileFragment.updateProfile();
+                        }
+                    }
+                }else{
+                    if (!profileFragment.getSerial().equalsIgnoreCase("staff")) {
+                        profileFragment.setSerial("staff");
+                        if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof ProfileFragment) {
+                            profileFragment.updateProfile();
+                        }
                     }
                 }
                 fragment = profileFragment;
@@ -177,16 +209,19 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_about_fragment:
                 fragment = aboutFragment;
+                break;
+            case R.id.logout:
+                Intent myIntent = new Intent(this,LoginActivity.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(myIntent);
+                this.finish();
+                return;
             default:
                 break;
         }
         if(fragment != null) {
             item.setChecked(true);
             switchFragment(fragment, item.getTitle().toString());
-            /*
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            */
         }else{
             Log.e("MainActivity", "Error in creating fragment");
         }
@@ -216,10 +251,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
     private void doSearch(String query){
-        searchData.putSerializable(query, data);
         sresultFragment.setQuery(query);
-        sresultFragment.setArguments(searchData);
         Fragment fragment = sresultFragment;
+        if (getSupportFragmentManager().findFragmentById(R.id.flContent) instanceof SearchresultsFragment)
+            sresultFragment.Searching();
         switchFragment(fragment, "Result");
     }
     @Override

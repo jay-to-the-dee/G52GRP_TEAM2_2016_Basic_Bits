@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -59,17 +60,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    //email and password here
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "harry@nottingham.ac.uk:harry", "bar@example.com:world", "dumbledore@yahoo.com:dumbledore", "test@yahoo.com:test1"
-    };
+
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mUsernameView;
+    private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -105,9 +104,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String rdfPassword = getValue("information:password", eItem);
                 String rdfRole = getValue("information:role", eItem);
 
-                login_username.add(i, rdfUsername);
-                login_password.add(i, rdfPassword);
-                role.add(i, rdfRole);
+                login_username.add(rdfUsername);
+                login_password.add(rdfPassword);
+                role.add(rdfRole);
             }
 
         } catch (Exception e) {
@@ -126,17 +125,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mUsernameView = (EditText) findViewById(R.id.username);
-        mUsernameView.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -166,11 +156,56 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         login_password = new ArrayList<>();
         role = new ArrayList<>();
 
+        factory = DocumentBuilderFactory.newInstance();
         InputStream rdfLoginStream = getResources().openRawResource(R.raw.login_data);
         parseLoginData(rdfLoginStream);
+
+        mUsernameView.requestFocus();
     }
 
 
+    private void populateAutoComplete() {
+        if (!mayRequestContacts()) {
+            return;
+        }
+
+        getLoaderManager().initLoader(0, null, this);
+    }
+
+    private boolean mayRequestContacts() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+            Snackbar.make(mUsernameView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        @TargetApi(Build.VERSION_CODES.M)
+                        public void onClick(View v) {
+                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+                        }
+                    });
+        } else {
+            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+        }
+        return false;
+    }
+
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_READ_CONTACTS) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                populateAutoComplete();
+            }
+        }
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -196,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(username, password)) {
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -223,15 +258,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    private boolean isPasswordValid(String username, String password) {
-        //TODO: Replace this with your own logic
-        login_username.contains(username);
-        for(int i = 0; i < login_username.size(); i++){
-            if(username.equals(login_username.get(i)))
-                if(password.equals(login_password.get(i)))
-                    return true;
-        }
-        return false;
+    private boolean isPasswordValid(String password) {
+        return password.length() > 1;
     }
 
     /**
@@ -286,17 +314,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 // a primary email address if the user hasn't specified one.
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
-
-    @Override
+   @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
+        List<String> usernames = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
+            usernames.add(cursor.getString(ProfileQuery.ADDRESS));
             cursor.moveToNext();
         }
 
-        addEmailsToAutoComplete(emails);
+        addUsernamesToAutoComplete(usernames);
     }
 
     @Override
@@ -304,13 +331,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     }
 
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
+    private void addUsernamesToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        //mEmailView.setAdapter(adapter);
+        mUsernameView.setAdapter(adapter);
     }
 
 
@@ -330,11 +357,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUsername;
         private final String mPassword;
+        private String mRole = null;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
+        UserLoginTask(String username, String password) {
+            mUsername = username;
             mPassword = password;
         }
 
@@ -348,13 +376,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (InterruptedException e) {
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
+            int index = 0;
+            for (String credential: login_username) {
+                if (credential.equals(mUsername)) {
                     // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                    if(login_password.get(index).equals(mPassword)){
+                        mRole = role.get(index);
+                        return true;
+                    }else
+                        return false;
                 }
+                index++;
             }
 
             // TODO: register the new account here.
@@ -369,7 +401,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 finish();
                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
-                myIntent.putExtra("user", mEmail);
+                myIntent.putExtra("user", mUsername);
+                myIntent.putExtra("role", mRole);
                 LoginActivity.this.startActivity(myIntent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
