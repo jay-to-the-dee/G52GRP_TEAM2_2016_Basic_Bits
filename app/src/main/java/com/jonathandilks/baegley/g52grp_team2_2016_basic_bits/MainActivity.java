@@ -104,8 +104,6 @@ public class MainActivity extends AppCompatActivity
         String name;
         String email;
 
-        name = data.findStudent(username).getName();
-        email = data.findStudent(username).getEmail();
         if(role.equalsIgnoreCase("student")) {
             name = data.findStudent(username).getName();
             email = data.findStudent(username).getEmail();
