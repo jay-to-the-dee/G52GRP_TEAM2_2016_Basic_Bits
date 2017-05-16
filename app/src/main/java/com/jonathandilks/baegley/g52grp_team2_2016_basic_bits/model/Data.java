@@ -1,6 +1,7 @@
 package com.jonathandilks.baegley.g52grp_team2_2016_basic_bits.model;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -66,14 +67,25 @@ public class Data implements Serializable {
         return results;
     }
 
+    public void studentEnrolModule(Module m){
+        Iterator<Student> studentIterator = students.iterator();
+        while(studentIterator.hasNext())
+            studentIterator.next().addModuleEnrolment(m);
+    }
+
+    public Student findStudent(String searchString)
+    {
+        for (Student s : students)
+            if(s.getUserName().contains(searchString))
+                return s;
+        return null;
+    }
+
     public Staff findStaff(String searchString)
     {
-        for (Staff s : staff) {
-            if (s.getUserName().contains(searchString)) {
+        for (Staff s : staff)
+            if (s.getUserName().contains(searchString))
                 return s;
-            }
-        }
-
         return null;
     }
 }
