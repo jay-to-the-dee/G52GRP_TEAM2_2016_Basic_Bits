@@ -3,7 +3,7 @@
     <string name="app_name">UoN Verzeichnis</string>
     <string name="git_name">G52GRP_MANNSCHAFT2_2016_Einfach_Bits</string>
     <string name="prompt_password">Passwort (freiwellig)</string>
-    <string name="title_activity_login">Einloggen</string>
+    <string name="Log_in_button">Einloggen</string>
     <string name="error_invalid_password">Dieses Passwort ist zu klein</string>
     <string name="error_invalid_email">Diese E-Mail-Adresse ist falsch</string>
     <string name="error_incorrect_password">Diese Passwort ist falsch</string>
@@ -11,7 +11,6 @@
     <string name="action_sign_in">Einloggen oder Registrieren</string>
     <string name="action_sign_in_short">Einloggen</string>
     <string name="permission_rationale">\"Für die Bereitstellung von E-Mail-Ergänzungen sind Kontaktberechtigungen erforderlich.\"</string>
-    <string name="prompt_email">E-Mail</string>
     <string name="action_settings">Einstellungen</string>
     <string name="navigation_drawer_close">Schließen Sie die Navigationsschublade</string>
     <string name="navigation_drawer_open">Öffnen Sie die Navigationsschublade</string>
@@ -37,4 +36,8 @@
     <string name="navigation_map">Plan</string>
     <string name="navigation_home">Heimat</string>
     <string name="navigation_about">Über</string>
+    <string name="navigation_tutor">Lehrer</string>
+
+    <string name="prompt_username">Benutzername</string>
+    <string name="navigation_logout">Log-out</string>
 </resources>
